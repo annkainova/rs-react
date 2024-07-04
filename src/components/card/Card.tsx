@@ -16,7 +16,7 @@ class Card extends React.Component<CardProps, CardState> {
       <div className={cl.card}>
         <div className={cl.card__img}>
           <div className={cl.rating}>{this.props.ageRating}</div>
-          <div className={cl.test}></div>
+          <div className="gradient gradient-bottom-light"></div>
           <img src={this.props.imgLink} alt={`${this.props.title} cover`} />
         </div>
         <div className={cl.card__info}>

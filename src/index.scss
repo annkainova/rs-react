@@ -37,7 +37,6 @@
 :focus-visible {
   outline: 2px dotted var(--primary-color);
   outline-offset: 3px;
-  border-radius: 12px;
 }
 
 input {
@@ -46,10 +45,10 @@ input {
   }
 }
 
-::selection {
-  color: var(--text-color);
-  background-color: var(--primary-color);
-}
+// ::selection {
+//   color: var(--text-color);
+//   background-color: var(--primary-color);
+// }
 
 html {
   height: 100%;
@@ -109,4 +108,33 @@ li {
 
 .stop-scroll {
   overflow: hidden;
+}
+
+.gradient {
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+}
+
+.gradient-bottom-light {
+  background: linear-gradient(0deg, rgba(18, 18, 18, 0.6) 6.8%, rgba(18, 18, 18, 0) 120.11%);
+}
+
+.gradient-left {
+  background: linear-gradient(90deg, rgba(18, 18, 18, 0.6) 6.8%, rgba(18, 18, 18, 0) 120.11%);
+}
+
+.gradient-bottom {
+  bottom: 0;
+  z-index: 10;
+  height: 30%;
+  background: linear-gradient(180deg, rgba(212, 37, 37, 0) 0%, #121212 80.63%);
+}
+
+.gradient-top {
+  top: 0;
+  z-index: 0;
+  height: 30%;
+  background: linear-gradient(0deg, rgba(212, 37, 37, 0) 0%, #121212 120.63%);
 }
