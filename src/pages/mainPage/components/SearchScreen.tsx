@@ -9,6 +9,7 @@ interface SearchScreenProps {}
 interface SearchScreenState {}
 
 class SearchScreen extends React.Component<SearchScreenProps, SearchScreenState> {
+  // eslint-disable-next-line class-methods-use-this
   render() {
     return (
       <section>

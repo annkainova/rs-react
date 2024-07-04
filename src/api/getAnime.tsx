@@ -8,11 +8,9 @@ export default async function getAnime(request: string) {
         },
       }
     );
-
     const data = await response.json();
     return data.data;
-    console.log('data', data);
   } catch (error) {
-    console.error('Error when get anime', error);
+    return [];
   }
 }

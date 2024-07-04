@@ -6,6 +6,7 @@ interface AppProps {}
 interface AppState {}
 
 class App extends React.Component<AppProps, AppState> {
+  // eslint-disable-next-line class-methods-use-this
   render() {
     return <MainPage />;
   }

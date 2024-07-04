@@ -7,6 +7,7 @@ interface MainPageProps {}
 interface MainPageState {}
 
 class MainPage extends React.Component<MainPageProps, MainPageState> {
+  // eslint-disable-next-line class-methods-use-this
   render() {
     return (
       <main>
