@@ -1,0 +1,16 @@
+.searchBar {
+  display: grid;
+  grid-template-columns: auto max-content;
+  padding: 24px 48px;
+  width: 50%;
+  gap: 14px;
+
+  &__input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #fff;
+    border-radius: 14px;
+    padding: 0 14px;
+    gap: 28px;
+  }
+}
