@@ -22,6 +22,9 @@
   &__title {
     font-size: var(--title-font-size);
     color: var(--light-color);
+    // white-space: nowrap;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
   }
 
   &__yearStart {
@@ -35,7 +38,6 @@
   margin: 14px;
   border-radius: 14px;
   padding: 14px;
-  width: 44px;
   font-weight: 800;
   font-size: 14px;
   text-align: center;
