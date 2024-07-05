@@ -2,9 +2,8 @@ import cn from 'classnames';
 import React from 'react';
 import Card from '../../../components/card/Card';
 import cl from '../mainPage.module.scss';
-import getAnime from '../../../api/getAnime';
 
-interface Anime {
+export interface Anime {
   id: string;
   attributes: {
     canonicalTitle: string;
@@ -13,47 +12,34 @@ interface Anime {
     posterImage: {
       large: string;
     };
+    coverImage: {
+      original: string;
+    };
   };
 }
 
-interface CardSectionProps {}
-
-interface CardSectionState {
+interface CardSectionProps {
   animeList: Anime[];
 }
 
-class CardSection extends React.Component<CardSectionProps, CardSectionState> {
-  constructor(props: CardSectionProps) {
-    super(props);
-    this.state = {
-      animeList: [],
-    };
-  }
+// interface CardSectionState {
+//   animeList: Anime[];
+// }
 
-  async componentDidMount() {
-    const animeList = await getAnime('One Piece');
-    this.setState({ animeList });
-  }
-
-  render() {
-    const { animeList } = this.state;
-
-    return (
-      <section className={cn('container', cl.cardSection)}>
-        <div className={cl.cardSection__box}>
-          {animeList.map((anime: Anime) => (
-            <Card
-              key={anime.id}
-              title={anime.attributes.canonicalTitle}
-              yearStart={anime.attributes.startDate.slice(0, 4)}
-              rating={anime.attributes.averageRating}
-              imgLink={anime.attributes.posterImage.large}
-            />
-          ))}
-        </div>
-      </section>
-    );
-  }
-}
+const CardSection: React.FC<CardSectionProps> = ({ animeList }) => (
+  <section className={cn('container', cl.cardSection)}>
+    <div className={cl.cardSection__box}>
+      {animeList.map((anime: Anime) => (
+        <Card
+          key={anime.id}
+          title={anime.attributes.canonicalTitle}
+          yearStart={anime.attributes.startDate}
+          rating={anime.attributes.averageRating}
+          imgLink={anime.attributes.posterImage.large}
+        />
+      ))}
+    </div>
+  </section>
+);
 
 export default CardSection;

@@ -1,21 +1,33 @@
 import React from 'react';
 import SearchScreen from './components/SearchScreen';
-import CardSection from './components/CardSection';
+import CardSection, { Anime } from './components/CardSection';
 
 interface MainPageProps {}
 
-interface MainPageState {}
+interface MainPageState {
+  animeList: Anime[];
+}
 
 class MainPage extends React.Component<MainPageProps, MainPageState> {
-  // eslint-disable-next-line class-methods-use-this
+  constructor(props: MainPageProps) {
+    super(props);
+    this.state = {
+      animeList: [],
+    };
+  }
+
+  handleSearchResults = (animeList: Anime[]) => {
+    this.setState({ animeList });
+  };
+
   render() {
+    const { animeList } = this.state;
     return (
       <main>
-        <SearchScreen />
-        <CardSection />
+        <SearchScreen onSearchResults={this.handleSearchResults} />
+        <CardSection animeList={animeList} />
       </main>
     );
   }
 }
-
 export default MainPage;

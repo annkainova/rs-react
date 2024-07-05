@@ -1,25 +1,14 @@
 import React from 'react';
 import SearchBar from '../../../components/searchBar/searchBar';
 import getAnime from '../../../api/getAnime';
-
 import cl from '../mainPage.module.scss';
+import { Anime } from './CardSection';
+// import image from '../../../../public/frieren-frieren-beyond-journeys-end-hd-wallpaper-uhdpaper.com-172@3@a.jpg';
 
-interface Anime {
-  id: string;
-  attributes: {
-    canonicalTitle: string;
-    startDate: string;
-    averageRating: string;
-    posterImage: {
-      large: string;
-    };
-    coverImage: {
-      // original: string;
-    };
-  };
+interface SearchScreenProps {
+  // eslint-disable-next-line no-unused-vars
+  onSearchResults: (animeList: Anime[]) => void;
 }
-
-interface SearchScreenProps {}
 
 interface SearchScreenState {
   animeList: Anime[];
@@ -33,10 +22,16 @@ class SearchScreen extends React.Component<SearchScreenProps, SearchScreenState>
     };
   }
 
-  async componentDidMount() {
-    const animeList = await getAnime('One Piece Film: Z');
-
+  performSearch = async (query: string) => {
+    const animeList = await getAnime(query);
+    // console.log('animeList');
     this.setState({ animeList });
+    this.props.onSearchResults(animeList);
+  };
+
+  async componentDidMount() {
+    const savedQuery = localStorage.getItem('searchQuery') || '';
+    await this.performSearch(savedQuery);
   }
 
   render() {
@@ -48,13 +43,20 @@ class SearchScreen extends React.Component<SearchScreenProps, SearchScreenState>
           <h1 className={cl.searchScreen__title}>anime.search</h1>
           <div className="grid">
             <div className={cl.searchBox}>
-              <SearchBar />
+              <SearchBar onSearch={this.performSearch} />
             </div>
           </div>
           <div className="gradient gradient-top"></div>
           <div className="gradient gradient-left"></div>
           <div className="gradient gradient-bottom"></div>
-          {animeList.length > 0 && <img src={animeList[0].attributes.coverImage.original} alt="Anime Poster" />}{' '}
+          {animeList.length > 0 ? (
+            <img src={animeList[0].attributes.coverImage.original} alt="Anime Poster" />
+          ) : (
+            <img
+              src="../../../../public/frieren-frieren-beyond-journeys-end-hd-wallpaper-uhdpaper.com-172@3@a.jpg"
+              alt="Anime Poster"
+            />
+          )}
         </div>
       </section>
     );

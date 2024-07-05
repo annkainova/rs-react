@@ -7,7 +7,11 @@ interface ButtonProps {
 
 class Button extends React.Component<ButtonProps> {
   render() {
-    return <button className={cl.button}>{this.props.children}</button>;
+    return (
+      <button type="submit" className={cl.button}>
+        {this.props.children}
+      </button>
+    );
   }
 }
 
