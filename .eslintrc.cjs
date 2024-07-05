@@ -13,10 +13,8 @@ module.exports = {
   plugins: ['react-refresh', '@typescript-eslint', 'react-compiler'],
   rules: {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-    'react-compiler/react-compiler': 'error',
     'lines-between-class-members': 'off',
-    // 'react/prop-types': 'off',
-    // 'react/react-in-jsx-scope': 'off',
+    'react-compiler/react-compiler': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
     'import/extensions': ['error', 'always', { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' }],
   },

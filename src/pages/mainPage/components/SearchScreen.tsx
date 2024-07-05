@@ -1,16 +1,47 @@
 import React from 'react';
 import SearchBar from '../../../components/searchBar/searchBar';
+import getAnime from '../../../api/getAnime';
 
 import cl from '../mainPage.module.scss';
-import image from '../../../../public/frieren-frieren-beyond-journeys-end-hd-wallpaper-uhdpaper.com-172@3@a.jpg';
+
+interface Anime {
+  id: string;
+  attributes: {
+    canonicalTitle: string;
+    startDate: string;
+    averageRating: string;
+    posterImage: {
+      large: string;
+    };
+    coverImage: {
+      // original: string;
+    };
+  };
+}
 
 interface SearchScreenProps {}
 
-interface SearchScreenState {}
+interface SearchScreenState {
+  animeList: Anime[];
+}
 
 class SearchScreen extends React.Component<SearchScreenProps, SearchScreenState> {
-  // eslint-disable-next-line class-methods-use-this
+  constructor(props: SearchScreenProps) {
+    super(props);
+    this.state = {
+      animeList: [],
+    };
+  }
+
+  async componentDidMount() {
+    const animeList = await getAnime('One Piece Film: Z');
+
+    this.setState({ animeList });
+  }
+
   render() {
+    const { animeList } = this.state;
+
     return (
       <section>
         <div className={cl.searchScreen}>
@@ -23,8 +54,7 @@ class SearchScreen extends React.Component<SearchScreenProps, SearchScreenState>
           <div className="gradient gradient-top"></div>
           <div className="gradient gradient-left"></div>
           <div className="gradient gradient-bottom"></div>
-
-          <img src={image} alt="/" />
+          {animeList.length > 0 && <img src={animeList[0].attributes.coverImage.original} alt="Anime Poster" />}{' '}
         </div>
       </section>
     );

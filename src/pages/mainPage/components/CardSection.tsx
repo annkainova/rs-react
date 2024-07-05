@@ -31,7 +31,7 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
   }
 
   async componentDidMount() {
-    const animeList = await getAnime('Naruto');
+    const animeList = await getAnime('One Piece');
     this.setState({ animeList });
   }
 
