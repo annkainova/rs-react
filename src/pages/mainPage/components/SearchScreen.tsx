@@ -3,7 +3,7 @@ import SearchBar from '../../../components/searchBar/searchBar';
 import getAnime from '../../../api/getAnime';
 import cl from '../mainPage.module.scss';
 import { Anime } from './CardSection';
-// import image from '../../../../public/frieren-frieren-beyond-journeys-end-hd-wallpaper-uhdpaper.com-172@3@a.jpg';
+import Loader from '../../../components/loader/Loader';
 
 interface SearchScreenProps {
   // eslint-disable-next-line no-unused-vars
@@ -12,6 +12,7 @@ interface SearchScreenProps {
 
 interface SearchScreenState {
   animeList: Anime[];
+  isLoading: boolean;
 }
 
 class SearchScreen extends React.Component<SearchScreenProps, SearchScreenState> {
@@ -19,13 +20,14 @@ class SearchScreen extends React.Component<SearchScreenProps, SearchScreenState>
     super(props);
     this.state = {
       animeList: [],
+      isLoading: false,
     };
   }
 
   performSearch = async (query: string) => {
+    this.setState({ isLoading: true });
     const animeList = await getAnime(query);
-    // console.log('animeList');
-    this.setState({ animeList });
+    this.setState({ animeList, isLoading: false });
     this.props.onSearchResults(animeList);
   };
 
@@ -34,13 +36,28 @@ class SearchScreen extends React.Component<SearchScreenProps, SearchScreenState>
     await this.performSearch(savedQuery);
   }
 
+  handleClickonLogo = async () => {
+    localStorage.setItem('searchQuery', '');
+    await this.performSearch('');
+  };
+
   render() {
-    const { animeList } = this.state;
+    const { animeList, isLoading } = this.state;
+    const defaultImage =
+      '../../../../public/frieren-frieren-beyond-journeys-end-hd-wallpaper-uhdpaper.com-172@3@a.jpg';
+    const coverImage =
+      animeList.length > 0 && animeList[0].attributes.coverImage
+        ? animeList[0].attributes.coverImage.original
+        : defaultImage;
 
     return (
       <section>
         <div className={cl.searchScreen}>
-          <h1 className={cl.searchScreen__title}>anime.search</h1>
+          <h1 onClick={this.handleClickonLogo} className={cl.searchScreen__title}>
+            anime.search
+          </h1>
+          {isLoading && <Loader />}
+
           <div className="grid">
             <div className={cl.searchBox}>
               <SearchBar onSearch={this.performSearch} />
@@ -49,14 +66,7 @@ class SearchScreen extends React.Component<SearchScreenProps, SearchScreenState>
           <div className="gradient gradient-top"></div>
           <div className="gradient gradient-left"></div>
           <div className="gradient gradient-bottom"></div>
-          {animeList.length > 0 ? (
-            <img src={animeList[0].attributes.coverImage.original} alt="Anime Poster" />
-          ) : (
-            <img
-              src="../../../../public/frieren-frieren-beyond-journeys-end-hd-wallpaper-uhdpaper.com-172@3@a.jpg"
-              alt="Anime Poster"
-            />
-          )}
+          <img src={coverImage} alt="Anime Poster" />
         </div>
       </section>
     );

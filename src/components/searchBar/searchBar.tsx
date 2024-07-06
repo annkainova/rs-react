@@ -27,9 +27,8 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
   handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const trimmedQuery = this.state.query.trim();
-    if (trimmedQuery) {
-      this.props.onSearch(trimmedQuery);
-    }
+    localStorage.setItem('searchQuery', trimmedQuery);
+    this.props.onSearch(trimmedQuery);
   };
 
   render() {

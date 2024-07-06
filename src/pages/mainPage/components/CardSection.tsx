@@ -22,10 +22,6 @@ interface CardSectionProps {
   animeList: Anime[];
 }
 
-// interface CardSectionState {
-//   animeList: Anime[];
-// }
-
 const CardSection: React.FC<CardSectionProps> = ({ animeList }) => (
   <section className={cn('container', cl.cardSection)}>
     <div className={cl.cardSection__box}>
@@ -39,6 +35,9 @@ const CardSection: React.FC<CardSectionProps> = ({ animeList }) => (
         />
       ))}
     </div>
+    {animeList.length === 0 && (
+      <p className={cl.cardSection__message}> Unfortunately we didn't find anything</p>
+    )}
   </section>
 );
 

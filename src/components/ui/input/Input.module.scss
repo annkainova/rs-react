@@ -4,6 +4,12 @@
   font-size: var(--third-font-size);
   color: var(--light-color);
   background: none;
+
+
+}
+
+::placeholder {
+  color: var(--light-color);
 }
 
 .searchBar__input {

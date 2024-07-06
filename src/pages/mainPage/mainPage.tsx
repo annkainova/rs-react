@@ -30,4 +30,5 @@ class MainPage extends React.Component<MainPageProps, MainPageState> {
     );
   }
 }
+
 export default MainPage;
