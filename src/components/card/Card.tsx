@@ -1,5 +1,6 @@
 import React from 'react';
 import cl from './Card.module.scss';
+import StarIcon from '../icons/star';
 
 interface CardProps {
   title: string;
@@ -15,7 +16,10 @@ class Card extends React.Component<CardProps, CardState> {
     return (
       <div className={cl.card}>
         <div className={cl.card__img}>
-          <div className={cl.rating}>{this.props.rating}</div>
+          <div className={cl.rating}>
+            <StarIcon />
+            {this.props.rating}
+          </div>
           <div className="gradient gradient-bottom-light"></div>
           <img src={this.props.imgLink} alt={`${this.props.title} cover`} />
         </div>

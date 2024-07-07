@@ -28,6 +28,11 @@
 .searchBox {
   z-index: 10;
   grid-column: 4 / 10;
+
+
+  @media (width <=1000px) {
+    grid-column: 1 / -1;
+  }
 }
 
 .cardSection {
@@ -39,6 +44,12 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
+
+    @media (width <=1000px) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   }
 
   &__message {
@@ -50,7 +61,7 @@
 
 .ButtomError {
   position: absolute;
-  z-index: 15;
-  top: 24px;
   left: 24px;
+  top: 24px;
+  z-index: 15;
 }

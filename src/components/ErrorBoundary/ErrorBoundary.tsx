@@ -1,4 +1,5 @@
 import React, { ErrorInfo, ReactNode } from 'react';
+import cl from './ErrorBoundary.module.scss';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -26,7 +27,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
   render() {
     if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
+      return <h2 className={cl.mistake}>Something went wrong.</h2>;
     }
     return this.props.children;
   }

@@ -7,6 +7,11 @@
   text-align: center;
   color: #fff;
   background: var(--accent-color);
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .buttonMain {
