@@ -20,13 +20,16 @@ This is a React application that allows users to search for anime and display th
 ``` npm install ```
 
 ### Running the Application
-``` npm start ```
+1. To start the development server, run: ``` npm start ```
+2. This will start the application at http://localhost:5173.
+
 
 ### Building for Production
-``` npm run build ```
+1. To build the application for production, run: ``` npm run build ```
 
 ## Usage
-	1.	Open the application in your browser.
-	2.	Use the search bar to enter an anime title.
-	3.	Click the search button or press Enter to submit the query.
-	4.	View the search results displayed on the screen.
+	
+ 1.	Open the application in your browser.
+ 2.	Use the search bar to enter an anime title.
+ 3.	Click the search button or press Enter to submit the query.
+ 4.	View the search results displayed on the screen.
