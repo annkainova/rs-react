@@ -20,14 +20,13 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     if (this.state.hasError) {
-      // eslint-disable-next-line no-console
       console.error('Uncaught error:', error, errorInfo);
     }
   }
 
   render() {
     if (this.state.hasError) {
-      return <h1>Что-то пошло не так.</h1>;
+      return <h1>Something went wrong.</h1>;
     }
     return this.props.children;
   }

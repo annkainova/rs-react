@@ -1,20 +1,11 @@
 import React from 'react';
-import MainPage from './pages/mainPage/mainPage';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import SearchScreen from './pages/mainPage/components/SearchScreen';
 
-interface AppProps {}
-
-interface AppState {}
-
-class App extends React.Component<AppProps, AppState> {
-  // eslint-disable-next-line class-methods-use-this
-  render() {
-    return (
-      <ErrorBoundary>
-        <MainPage />
-      </ErrorBoundary>
-    );
-  }
-}
+const App: React.FC = () => (
+  <ErrorBoundary>
+    <SearchScreen />
+  </ErrorBoundary>
+);
 
 export default App;

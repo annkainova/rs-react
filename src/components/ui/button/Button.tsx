@@ -3,22 +3,21 @@ import cn from 'classnames';
 import cl from './Button.module.scss';
 
 interface ButtonProps {
-  // eslint-disable-next-line no-unused-vars
-  onClick?: (e: unknown) => void;
+  onClick?: () => void;
   children?: React.ReactNode;
   isMain?: boolean;
 }
 
 class Button extends React.Component<ButtonProps> {
   render() {
+    const { onClick, children, isMain } = this.props;
     return (
       <button
-        // isMain={this.props.isMain}
-        onClick={this.props.onClick}
+        onClick={onClick}
         type="submit"
-        className={cn(this.props.isMain ? cl.buttonMain : cl.buttonSqr, cl.button)}
+        className={cn(isMain ? cl.buttonMain : cl.buttonSqr, cl.button)}
       >
-        {this.props.children}
+        {children}
       </button>
     );
   }
