@@ -2,31 +2,24 @@
 @import '../node_modules/modern-normalize/modern-normalize.css';
 
 :root {
-  // base
+  /* base */
   --font-family: 'Manrope', sans-serif;
   --content-width: 1125px;
   --container-offset: 20px;
   --container-width: calc(var(--content-width) + (var(--container-offset) * 2));
 
-  // colors
-
+  /* colors */
   --accent-color: #4149df;
   --light-color: #fff;
   --text-color: #d9d7d7;
   --dark-color: #121212;
 
-  // sizes
+  /* sizes */
   --main-font-size: 16px;
   --second-font-size: 14px;
   --third-font-size: 18px;
   --title-font-size: 24px;
   --main-title-size: 52px;
-
-  // indents
-  --gap: 24px;
-
-  // animation
-  --duration: 0.3s;
 }
 
 * {
@@ -44,7 +37,6 @@ input {
     outline: none;
   }
 }
-
 
 html {
   height: 100%;
