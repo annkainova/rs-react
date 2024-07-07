@@ -1,30 +1,32 @@
-# React + TypeScript + Vite
+# Anime Search Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React application that allows users to search for anime and display the search results. The application includes components like `SearchBar`, `Input`, and other UI elements to create an interactive user experience.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Search for anime using the search bar.
+- Display search results dynamically.
+- Handle errors gracefully with an Error Boundary.
+- Responsive design for different screen sizes.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Getting Started
 
-- Configure the top-level `parserOptions` property like this:
+### Installation
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
+1. Clone the repository:
+``` git clone https://github.com/your-username/anime-search-app.git ```
+2. Install the dependencies:
+``` npm install ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Running the Application
+``` npm start ```
+
+### Building for Production
+``` npm run build ```
+
+## Usage
+	1.	Open the application in your browser.
+	2.	Use the search bar to enter an anime title.
+	3.	Click the search button or press Enter to submit the query.
+	4.	View the search results displayed on the screen.
