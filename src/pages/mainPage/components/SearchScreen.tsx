@@ -35,8 +35,7 @@ class SearchScreen extends React.Component {
 
   render() {
     const { animeList, isLoading } = this.state;
-    const defaultImage =
-      '../../../../public/frieren-frieren-beyond-journeys-end-hd-wallpaper-uhdpaper.com-172@3@a.jpg';
+    const defaultImage = 'https://imgur.com/i9anCwy';
     const coverImage =
       animeList.length > 0 && animeList[0].attributes.coverImage
         ? animeList[0].attributes.coverImage.original
