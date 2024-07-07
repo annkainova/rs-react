@@ -41,7 +41,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
           onChange={this.handleChange}
           placeholder="Search More"
         />
-        <Button>Search</Button>
+        <Button isMain={true}>Search</Button>
       </form>
     );
   }

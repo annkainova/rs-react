@@ -23,7 +23,6 @@
     width: 100%;
     height: 100%;
   }
-
 }
 
 .searchBox {
@@ -47,4 +46,12 @@
     justify-content: center;
     font-size: 18px;
   }
+}
+
+
+.ButtomError {
+  position: absolute;
+  z-index: 15;
+  top: 24px;
+  left: 24px;
 }

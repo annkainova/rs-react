@@ -4,6 +4,7 @@ import getAnime from '../../../api/getAnime';
 import cl from '../mainPage.module.scss';
 import { Anime } from './CardSection';
 import Loader from '../../../components/loader/Loader';
+import BuggyButton from '../../../components/buggyButton/buggyButton';
 
 interface SearchScreenProps {
   // eslint-disable-next-line no-unused-vars
@@ -51,23 +52,24 @@ class SearchScreen extends React.Component<SearchScreenProps, SearchScreenState>
         : defaultImage;
 
     return (
-      <section>
-        <div className={cl.searchScreen}>
-          <h1 onClick={this.handleClickonLogo} className={cl.searchScreen__title}>
-            anime.search
-          </h1>
-          {isLoading && <Loader />}
-
-          <div className="grid">
-            <div className={cl.searchBox}>
-              <SearchBar onSearch={this.performSearch} />
-            </div>
-          </div>
-          <div className="gradient gradient-top"></div>
-          <div className="gradient gradient-left"></div>
-          <div className="gradient gradient-bottom"></div>
-          <img src={coverImage} alt="Anime Poster" />
+      <section className={cl.searchScreen}>
+        <div className={cl.ButtomError}>
+          <BuggyButton />
         </div>
+        <h1 onClick={this.handleClickonLogo} className={cl.searchScreen__title}>
+          anime.search
+        </h1>
+        {isLoading && <Loader />}
+
+        <div className="grid">
+          <div className={cl.searchBox}>
+            <SearchBar onSearch={this.performSearch} />
+          </div>
+        </div>
+        <div className="gradient gradient-top"></div>
+        <div className="gradient gradient-left"></div>
+        <div className="gradient gradient-bottom"></div>
+        <img src={coverImage} alt="Anime Poster" />
       </section>
     );
   }

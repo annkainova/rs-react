@@ -16,7 +16,11 @@ module.exports = {
     'lines-between-class-members': 'off',
     'react-compiler/react-compiler': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
-    'import/extensions': ['error', 'always', { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' }],
+    'import/extensions': [
+      'error',
+      'always',
+      { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' },
+    ],
   },
   settings: {
     'import/resolver': {
