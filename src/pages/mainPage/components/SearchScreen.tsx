@@ -29,13 +29,13 @@ class SearchScreen extends React.Component {
   }
 
   handleClickonLogo = async () => {
-    localStorage.setItem('searchQuery', '');
+    localStorage.clear();
     await this.performSearch('');
   };
 
   render() {
     const { animeList, isLoading } = this.state;
-    const defaultImage = 'https://imgur.com/i9anCwy';
+    const defaultImage = 'https://i.imgur.com/i9anCwy.jpg';
     const coverImage =
       animeList.length > 0 && animeList[0].attributes.coverImage
         ? animeList[0].attributes.coverImage.original
