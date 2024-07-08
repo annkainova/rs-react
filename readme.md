@@ -15,7 +15,7 @@ This is a React application that allows users to search for anime and display th
 ### Installation
 
 1. Clone the repository:
-``` git clone https://github.com/your-username/anime-search-app.git ```
+``` git clone ```
 2. Install the dependencies:
 ``` npm install ```
 
