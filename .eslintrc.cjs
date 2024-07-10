@@ -18,8 +18,13 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'error',
     'import/extensions': [
       'error',
-      'always',
-      { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' },
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
     ],
     '@typescript-eslint/no-unused-vars': ['error'],
     'no-console': ['error', { allow: ['warn', 'error'] }],
@@ -28,6 +33,10 @@ module.exports = {
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+      typescript: {
+        alwaysTryTypes: true,
+        project: './tsconfig.json',
       },
     },
   },
