@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, Outlet } from 'react-router-dom';
 import SearchBar from '../../../components/searchBar/searchBar';
 import getAnime from '../../../api/getAnime';
 import cl from '../mainPage.module.scss';
@@ -63,6 +64,21 @@ class SearchScreen extends React.Component {
           <img src={coverImage} alt="Anime Poster" />
         </section>
         <CardSection animeList={animeList} />
+
+        <nav>
+          <ul>
+            <li>
+              <Link to={`contacts/1`}>Your Name</Link>
+            </li>
+            <li>
+              <Link to={`contacts/2`}>Your Friend</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <div id="detail">
+          <Outlet />
+        </div>
       </main>
     );
   }
