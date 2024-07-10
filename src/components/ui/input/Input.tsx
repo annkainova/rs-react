@@ -10,25 +10,20 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-class Input extends React.Component<InputProps> {
-  render() {
-    const { type, id, value, placeholder, onChange } = this.props;
-    return (
-      <div className={cl.searchBar__input}>
-        <SearchIcon />
-        <input
-          onChange={onChange}
-          data-testid="input"
-          id={id}
-          value={value}
-          type={type}
-          placeholder={placeholder}
-          className={cl.input}
-          autoComplete="off"
-        />
-      </div>
-    );
-  }
-}
+const Input: React.FC<InputProps> = ({ type, id, value, placeholder, onChange }) => (
+  <div className={cl.searchBar__input}>
+    <SearchIcon />
+    <input
+      onChange={onChange}
+      data-testid="input"
+      id={id}
+      value={value}
+      type={type}
+      placeholder={placeholder}
+      className={cl.input}
+      autoComplete="off"
+    />
+  </div>
+);
 
 export default Input;

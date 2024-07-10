@@ -8,19 +8,14 @@ interface ButtonProps {
   isMain?: boolean;
 }
 
-class Button extends React.Component<ButtonProps> {
-  render() {
-    const { onClick, children, isMain } = this.props;
-    return (
-      <button
-        onClick={onClick}
-        type="submit"
-        className={cn(isMain ? cl.buttonMain : cl.buttonSqr, cl.button)}
-      >
-        {children}
-      </button>
-    );
-  }
-}
+const Button: React.FC<ButtonProps> = ({ onClick, children, isMain }) => (
+  <button
+    onClick={onClick}
+    type="submit"
+    className={cn(isMain ? cl.buttonMain : cl.buttonSqr, cl.button)}
+  >
+    {children}
+  </button>
+);
 
 export default Button;
