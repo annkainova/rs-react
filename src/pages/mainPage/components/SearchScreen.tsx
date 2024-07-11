@@ -6,25 +6,28 @@ import cl from '../mainPage.module.scss';
 import CardSection, { Anime } from './CardSection';
 import Loader from '../../../components/loader/Loader';
 import BuggyButton from '../../../components/buggyButton/buggyButton';
+import useLocalStorage from '../../../hooks/useLocalStorage';
 
 const SearchScreen: React.FC = () => {
   const [animeList, setAnimeList] = useState<Anime[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [queryLocal, , deleteValueLocalStorge] = useLocalStorage('searchQuery');
 
-  const performSearch = async (query: string) => {
+  const performSearch = async (searchQuery: string) => {
     setIsLoading(true);
-    const animeListResponse = await getAnime(query);
+    const animeListResponse = await getAnime(searchQuery);
     setIsLoading(false);
     setAnimeList(animeListResponse);
   };
 
   useEffect(() => {
-    const savedQuery = localStorage.getItem('searchQuery') || '';
-    performSearch(savedQuery);
-  }, []);
+    if (queryLocal) {
+      performSearch(queryLocal);
+    }
+  }, [queryLocal]);
 
-  const handleClickonLogo = async () => {
-    localStorage.clear();
+  const handleClickOnLogo = async () => {
+    deleteValueLocalStorge();
     performSearch('');
   };
 
@@ -40,7 +43,7 @@ const SearchScreen: React.FC = () => {
         <div className={cl.ButtomError}>
           <BuggyButton />
         </div>
-        <h1 onClick={handleClickonLogo} className={cl.searchScreen__title}>
+        <h1 onClick={handleClickOnLogo} className={cl.searchScreen__title}>
           anime.search
         </h1>
         {isLoading && <Loader />}
