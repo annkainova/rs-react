@@ -58,6 +58,10 @@
   }
 }
 
+.cardSectionSelected .cardSection__box {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .ButtomError {
   position: absolute;
   left: 24px;

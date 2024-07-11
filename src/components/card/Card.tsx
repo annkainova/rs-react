@@ -2,7 +2,7 @@ import React from 'react';
 import cl from './Card.module.scss';
 import StarIcon from '../icons/star';
 
-interface CardProps {
+export interface CardProps {
   title: string;
   yearStart: string;
   rating: string;

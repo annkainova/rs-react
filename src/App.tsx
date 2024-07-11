@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import SearchScreen from './pages/mainPage/components/SearchScreen';
 import ErrorPage from './pages/errorPage/ErorrPage';
+import DetailedInformation from './pages/mainPage/components/DetailedInformation';
 // import CardInfo from './pages/CardInfo/CardInfo';
 
 const router = createBrowserRouter([
@@ -12,12 +13,12 @@ const router = createBrowserRouter([
     element: <SearchScreen />,
     errorElement: <ErrorPage />,
 
-    // children: [
-    //   {
-    //     path: 'contacts/:contactId',
-    //     element: <CardInfo />,
-    //   },
-    // ],
+    children: [
+      {
+        path: 'card/:cardId',
+        element: <DetailedInformation />,
+      },
+    ],
   },
 ]);
 

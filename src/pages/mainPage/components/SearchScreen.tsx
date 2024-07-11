@@ -1,5 +1,6 @@
+import cn from 'classnames';
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import SearchBar from '../../../components/searchBar/searchBar';
 import getAnime from '../../../api/getAnime';
 import cl from '../mainPage.module.scss';
@@ -12,19 +13,22 @@ const SearchScreen: React.FC = () => {
   const [animeList, setAnimeList] = useState<Anime[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [queryLocal, , deleteValueLocalStorge] = useLocalStorage('searchQuery');
+  const navigate = useNavigate();
 
   const performSearch = async (searchQuery: string) => {
     setIsLoading(true);
     const animeListResponse = await getAnime(searchQuery);
     setIsLoading(false);
     setAnimeList(animeListResponse);
+    navigate('/');
   };
 
   useEffect(() => {
     if (queryLocal) {
       performSearch(queryLocal);
     }
-  }, [queryLocal]);
+    performSearch('');
+  });
 
   const handleClickOnLogo = async () => {
     deleteValueLocalStorge();
@@ -58,22 +62,10 @@ const SearchScreen: React.FC = () => {
         <div className="gradient gradient-bottom"></div>
         <img src={coverImage} alt="Anime Poster" />
       </section>
-      <CardSection animeList={animeList} />
-
-      <nav>
-        <ul>
-          <li>
-            <Link to={`contacts/1`}>Your Name</Link>
-          </li>
-          <li>
-            <Link to={`contacts/2`}>Your Friend</Link>
-          </li>
-        </ul>
-      </nav>
-
-      <div id="detail">
-        <Outlet />
-      </div>
+      <section className={cn('container', cl.cardSection)}>
+        <CardSection animeList={animeList} />
+        <Outlet context={{ animeList }} />{' '}
+      </section>
     </main>
   );
 };
