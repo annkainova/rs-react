@@ -13,7 +13,6 @@ const SearchScreen: React.FC = () => {
   const [animeList, setAnimeList] = useState<Anime[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [queryLocal, , deleteValueLocalStorge] = useLocalStorage('searchQuery');
-  const [selectedAnime, setSelectedAnime] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const performSearch = useCallback(
@@ -37,7 +36,6 @@ const SearchScreen: React.FC = () => {
 
   const handleClickOnLogo = async () => {
     deleteValueLocalStorge();
-    setSelectedAnime(null);
     performSearch('');
   };
 
@@ -46,10 +44,6 @@ const SearchScreen: React.FC = () => {
     animeList.length > 0 && animeList[0].attributes.coverImage
       ? animeList[0].attributes.coverImage.original
       : defaultImage;
-
-  const handleCardClick = (animeId: string) => {
-    setSelectedAnime(animeId);
-  };
 
   return (
     <main>
@@ -72,11 +66,11 @@ const SearchScreen: React.FC = () => {
         <div className="gradient gradient-bottom"></div>
         <img src={coverImage} alt="Anime Poster" />
       </section>
-      <section
-        className={cn('container', cl.cardSection, { [cl.cardSectionSelected]: selectedAnime })}
-      >
-        <CardSection animeList={animeList} onCardClick={handleCardClick} />
-        <Outlet />
+      <section className={cn('container', cl.cardSection)}>
+        <div className={cl.cardSection__wrapper}>
+          <CardSection animeList={animeList} />
+          <Outlet />
+        </div>
       </section>
     </main>
   );
