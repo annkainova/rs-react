@@ -23,13 +23,14 @@ export interface Anime {
 
 interface CardSectionProps {
   animeList: Anime[];
+  onCardClick: (animeId: string) => void;
 }
 
-const CardSection: React.FC<CardSectionProps> = ({ animeList }) => (
+const CardSection: React.FC<CardSectionProps> = ({ animeList, onCardClick }) => (
   <>
     <div className={cl.cardSection__box}>
       {animeList.map((anime: Anime) => (
-        <Link key={anime.id} to={`card/${anime.id}`}>
+        <Link key={anime.id} to={`card/${anime.id}`} onClick={() => onCardClick(anime.id)}>
           <Card
             title={anime.attributes.canonicalTitle}
             yearStart={anime.attributes.startDate}

@@ -40,9 +40,11 @@
   z-index: 20;
 
   &__box {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 36px;
+
 
     @media (width <=1000px) {
       display: flex;
@@ -59,7 +61,7 @@
 }
 
 .cardSectionSelected .cardSection__box {
-  grid-template-columns: repeat(2, 1fr);
+  width: 50%;
 }
 
 .ButtomError {

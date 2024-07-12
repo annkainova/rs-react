@@ -1,4 +1,4 @@
-export default async function getAnime(request: string) {
+export async function getAnime(request: string) {
   try {
     const response = await fetch(
       `https://kitsu.io/api/edge/anime?filter[text]=${request}&page[limit]=8&page[offset]=0`,
@@ -21,3 +21,21 @@ export default async function getAnime(request: string) {
     return [];
   }
 }
+
+export const getAnimeById = async (animeId: string) => {
+  try {
+    const response = await fetch(`https://kitsu.io/api/edge/anime/${animeId}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/vnd.api+json',
+        'Content-Type': 'application/vnd.api+json',
+      },
+    });
+
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error('Error fetching anime by ID:', error);
+    return null;
+  }
+};
