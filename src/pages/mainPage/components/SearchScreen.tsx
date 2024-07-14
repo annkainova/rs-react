@@ -1,4 +1,3 @@
-import cn from 'classnames';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import SearchBar from '../../../components/searchBar/searchBar';
@@ -6,9 +5,10 @@ import { getAnime } from '../../../api/getAnime';
 import cl from '../mainPage.module.scss';
 import CardSection, { Anime } from './CardSection';
 import Loader from '../../../components/loader/Loader';
-import BuggyButton from '../../../components/buggyButton/buggyButton';
 import useLocalStorage from '../../../hooks/useLocalStorage';
 import Button from '../../../components/ui/button/Button';
+import ArrowBack from '../../../components/icons/arrowBack';
+import ArrowForward from '../../../components/icons/arrowForward';
 
 const SearchScreen: React.FC = () => {
   const { pageNumber } = useParams<{ pageNumber?: string }>();
@@ -27,11 +27,7 @@ const SearchScreen: React.FC = () => {
       const animeListResponse = await getAnime(searchQuery, limit, offset);
       setIsLoading(false);
       setAnimeList(animeListResponse);
-      // if (page === 1) {
-      //   navigate(`/`);
-      // } else {
       navigate(`/search/${page}`);
-      // }
     },
     [navigate]
   );
@@ -69,9 +65,6 @@ const SearchScreen: React.FC = () => {
   return (
     <main>
       <section className={cl.searchScreen}>
-        <div className={cl.ButtomError}>
-          <BuggyButton />
-        </div>
         <h1 onClick={handleClickOnLogo} className={cl.searchScreen__title}>
           anime.search
         </h1>
@@ -85,20 +78,22 @@ const SearchScreen: React.FC = () => {
         <div className="gradient gradient-bottom"></div>
         <img src={coverImage} alt="Anime Poster" />
       </section>
-      <section className={cn('container', cl.cardSection)}>
+      <section className={cl.cardSection}>
         <div className={cl.cardSection__wrapper}>
           {isLoading ? <Loader /> : <CardSection animeList={animeList} />}
           <Outlet />
         </div>
 
-        <div className={cl.paginationButtons}>
-          <Button onClick={handlePreviousPage} disabled={currentPage === 1}>
-            Previous
-          </Button>
-          <Button onClick={handleNextPage} disabled={animeList.length === 0}>
-            Next
-          </Button>
-        </div>
+        {!isLoading && (
+          <div className={cl.paginationButtons}>
+            <Button onClick={handlePreviousPage} disabled={currentPage === 1}>
+              <ArrowBack />
+            </Button>
+            <Button onClick={handleNextPage} disabled={animeList.length === 0}>
+              <ArrowForward />
+            </Button>
+          </div>
+        )}
       </section>
     </main>
   );
