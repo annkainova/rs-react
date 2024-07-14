@@ -20,6 +20,18 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/search/:pageNumber',
+    element: <SearchScreen />,
+    errorElement: <ErrorPage />,
+
+    children: [
+      {
+        path: 'card/:cardId',
+        element: <DetailedInformation />,
+      },
+    ],
+  },
 ]);
 
 const App: React.FC = () => (

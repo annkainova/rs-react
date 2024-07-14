@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import React, { useCallback, useEffect, useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import SearchBar from '../../../components/searchBar/searchBar';
 import { getAnime } from '../../../api/getAnime';
 import cl from '../mainPage.module.scss';
@@ -8,35 +8,54 @@ import CardSection, { Anime } from './CardSection';
 import Loader from '../../../components/loader/Loader';
 import BuggyButton from '../../../components/buggyButton/buggyButton';
 import useLocalStorage from '../../../hooks/useLocalStorage';
+import Button from '../../../components/ui/button/Button';
 
 const SearchScreen: React.FC = () => {
+  const { pageNumber } = useParams<{ pageNumber: string }>();
   const [animeList, setAnimeList] = useState<Anime[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(Number(pageNumber) || 1);
+
   const [queryLocal, , deleteValueLocalStorge] = useLocalStorage('searchQuery');
   const navigate = useNavigate();
 
   const performSearch = useCallback(
-    async (searchQuery: string) => {
+    async (searchQuery: string, page: number = 1) => {
       setIsLoading(true);
-      const animeListResponse = await getAnime(searchQuery);
+      const limit = 8;
+      const offset = page * limit;
+      const animeListResponse = await getAnime(searchQuery, limit, offset);
       setIsLoading(false);
       setAnimeList(animeListResponse);
-      navigate('/');
+      if (page === 1) {
+        navigate(`/`);
+      } else {
+        navigate(`/search/${page}`);
+      }
     },
     [navigate]
   );
 
   useEffect(() => {
     if (queryLocal) {
-      performSearch(queryLocal);
+      performSearch(queryLocal, currentPage);
     } else {
-      performSearch('');
+      performSearch('', currentPage);
     }
-  }, [performSearch, queryLocal]);
+  }, [performSearch, queryLocal, currentPage]);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : 1));
+  };
 
   const handleClickOnLogo = async () => {
     deleteValueLocalStorge();
     performSearch('');
+    setCurrentPage(1);
   };
 
   const defaultImage = 'https://i.imgur.com/i9anCwy.jpg';
@@ -54,8 +73,6 @@ const SearchScreen: React.FC = () => {
         <h1 onClick={handleClickOnLogo} className={cl.searchScreen__title}>
           anime.search
         </h1>
-        {isLoading && <Loader />}
-
         <div className="grid">
           <div className={cl.searchBox}>
             <SearchBar onSearch={performSearch} />
@@ -68,9 +85,19 @@ const SearchScreen: React.FC = () => {
       </section>
       <section className={cn('container', cl.cardSection)}>
         <div className={cl.cardSection__wrapper}>
-          <CardSection animeList={animeList} />
+          {isLoading ? <Loader /> : <CardSection animeList={animeList} />}
           <Outlet />
         </div>
+        {animeList.length !== 0 ? (
+          <div className={cl.paginationButtons}>
+            <Button onClick={handlePreviousPage} disabled={currentPage === 1}>
+              Previous
+            </Button>
+            <Button onClick={handleNextPage}>Next</Button>
+          </div>
+        ) : (
+          <></>
+        )}
       </section>
     </main>
   );

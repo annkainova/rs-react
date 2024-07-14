@@ -1,6 +1,7 @@
 .button {
   border: none;
   border-radius: 14px;
+  box-sizing: border-box;
   font-weight: 400;
   font-size: var(--third-font-size);
   line-height: 23.938px;
@@ -9,8 +10,19 @@
   background: var(--accent-color);
   transition: transform 0.3s ease-in-out;
 
-  &:hover {
-    transform: scale(1.05);
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+
+  &:disabled {
+    background: var(--text-color);
+
+    &:hover {
+      transform: scale(1.0);
+    }
   }
 }
 

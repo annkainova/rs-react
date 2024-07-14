@@ -1,7 +1,7 @@
-export async function getAnime(request: string) {
+export async function getAnime(request: string, limit: number, offset: number) {
   try {
     const response = await fetch(
-      `https://kitsu.io/api/edge/anime?filter[text]=${request}&page[limit]=8&page[offset]=0`,
+      `https://kitsu.io/api/edge/anime?filter[text]=${request}&page[limit]=${limit}&page[offset]=${offset}`,
       {
         headers: {
           Accept: 'application/vnd.api+json',
