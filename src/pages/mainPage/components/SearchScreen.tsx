@@ -11,7 +11,7 @@ import useLocalStorage from '../../../hooks/useLocalStorage';
 import Button from '../../../components/ui/button/Button';
 
 const SearchScreen: React.FC = () => {
-  const { pageNumber } = useParams<{ pageNumber: string }>();
+  const { pageNumber } = useParams<{ pageNumber?: string }>();
   const [animeList, setAnimeList] = useState<Anime[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(Number(pageNumber) || 1);
@@ -27,11 +27,11 @@ const SearchScreen: React.FC = () => {
       const animeListResponse = await getAnime(searchQuery, limit, offset);
       setIsLoading(false);
       setAnimeList(animeListResponse);
-      if (page === 1) {
-        navigate(`/`);
-      } else {
-        navigate(`/search/${page}`);
-      }
+      // if (page === 1) {
+      //   navigate(`/`);
+      // } else {
+      navigate(`/search/${page}`);
+      // }
     },
     [navigate]
   );
@@ -45,11 +45,13 @@ const SearchScreen: React.FC = () => {
   }, [performSearch, queryLocal, currentPage]);
 
   const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
+    const nextPage = currentPage + 1;
+    setCurrentPage(nextPage);
   };
 
   const handlePreviousPage = () => {
-    setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : 1));
+    const prevPage = currentPage > 1 ? currentPage - 1 : 1;
+    setCurrentPage(prevPage);
   };
 
   const handleClickOnLogo = async () => {
@@ -88,16 +90,15 @@ const SearchScreen: React.FC = () => {
           {isLoading ? <Loader /> : <CardSection animeList={animeList} />}
           <Outlet />
         </div>
-        {animeList.length !== 0 ? (
-          <div className={cl.paginationButtons}>
-            <Button onClick={handlePreviousPage} disabled={currentPage === 1}>
-              Previous
-            </Button>
-            <Button onClick={handleNextPage}>Next</Button>
-          </div>
-        ) : (
-          <></>
-        )}
+
+        <div className={cl.paginationButtons}>
+          <Button onClick={handlePreviousPage} disabled={currentPage === 1}>
+            Previous
+          </Button>
+          <Button onClick={handleNextPage} disabled={animeList.length === 0}>
+            Next
+          </Button>
+        </div>
       </section>
     </main>
   );

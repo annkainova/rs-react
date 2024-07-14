@@ -16,12 +16,11 @@
     }
   }
 
-
   &:disabled {
     background: var(--text-color);
 
     &:hover {
-      transform: scale(1.0);
+      transform: scale(1);
     }
   }
 }

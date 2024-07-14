@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import SearchScreen from './pages/mainPage/components/SearchScreen';
@@ -8,23 +8,25 @@ import DetailedInformation from './pages/mainPage/components/DetailedInformation
 // import CardInfo from './pages/CardInfo/CardInfo';
 
 const router = createBrowserRouter([
+  // {
+  //   path: '/',
+  //   element: <SearchScreen />,
+  //   errorElement: <ErrorPage />,
+  //   children: [
+  //     {
+  //       path: 'card/:cardId',
+  //       element: <DetailedInformation />,
+  //     },
+  //   ],
+  // },
   {
     path: '/',
-    element: <SearchScreen />,
-    errorElement: <ErrorPage />,
-
-    children: [
-      {
-        path: 'card/:cardId',
-        element: <DetailedInformation />,
-      },
-    ],
+    element: <Navigate to="/search/1" replace />,
   },
   {
-    path: '/search/:pageNumber',
+    path: 'search/:pageNumber',
     element: <SearchScreen />,
     errorElement: <ErrorPage />,
-
     children: [
       {
         path: 'card/:cardId',
