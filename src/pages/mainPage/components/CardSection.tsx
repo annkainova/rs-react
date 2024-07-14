@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import Card from '../../../components/card/Card';
 import cl from '../mainPage.module.scss';
 

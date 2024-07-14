@@ -12,29 +12,30 @@
     "preview": "vite preview",
     "prepare": "husky",
     "test": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@testing-library/react": "^14.2.0",
     "@vitejs/plugin-react": "^4.2.1",
     "classnames": "^2.5.1",
-    "jsdom": "^24.0.0",
     "lint-staged": "^15.2.7",
     "node-sass": "^9.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.1",
-    "vite": "^5.2.10",
-    "vitest": "^2.0.1"
+    "vite": "^5.2.10"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
     "@types/css-modules": "^1.0.5",
+    "@types/jest": "^29.5.12",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
     "@vitejs/plugin-react": "^4.3.1",
+    "@vitest/coverage-v8": "^2.0.2",
     "@vitest/ui": "^2.0.1",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -44,13 +45,15 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "husky": "^9.0.11",
+    "jsdom": "^24.1.0",
     "modern-normalize": "^2.0.0",
     "prettier": "^3.3.2",
     "sass": "^1.77.6",
     "stylelint": "^16.5.0",
     "stylelint-config-standard-scss": "^13.1.0",
     "stylelint-order": "^6.0.4",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vitest": "^2.0.2"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
