@@ -1,5 +1,4 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Button from '../ui/button/Button';
 import Input from '../ui/input/Input';
 import cl from './SearchBar.module.scss';
@@ -13,7 +12,6 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [query, setQuery] = useState('');
   const [queryLocal, setValueLocalStorge] = useLocalStorage('searchQuery');
-  const navigate = useNavigate();
 
   useEffect(() => {
     setQuery(queryLocal);
@@ -29,7 +27,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     setValueLocalStorge(trimmedQuery);
     const numberFirstPage = 1;
     onSearch(trimmedQuery, numberFirstPage);
-    navigate(`/search/1`);
   };
 
   return (

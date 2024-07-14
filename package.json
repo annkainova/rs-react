@@ -16,6 +16,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@testing-library/jest-dom": "^6.4.6",
     "@vitejs/plugin-react": "^4.2.1",
     "classnames": "^2.5.1",
     "lint-staged": "^15.2.7",
@@ -26,7 +27,6 @@
     "vite": "^5.2.10"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@types/css-modules": "^1.0.5",
     "@types/jest": "^29.5.12",
