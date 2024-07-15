@@ -1,0 +1,34 @@
+.button {
+  border: none;
+  border-radius: 14px;
+  box-sizing: border-box;
+  font-weight: 400;
+  font-size: var(--third-font-size);
+  line-height: 0px;
+  text-align: center;
+  color: #fff;
+  background: var(--accent-color);
+  transition: transform 0.3s ease-in-out;
+
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &:disabled {
+    background: var(--text-color);
+
+    &:hover {
+      transform: scale(1);
+    }
+  }
+}
+
+.buttonMain {
+  padding: 16px 50px;
+}
+
+.buttonSqr {
+  padding: 16px;
+}
