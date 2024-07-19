@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBrowserRouter, /* Navigate, */ RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
@@ -12,9 +12,9 @@ const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <SearchScreen />,
+    // element: <SearchScreen />,
 
-    // element: <Navigate to="/search/1" replace />,
+    element: <Navigate to="/search/1" replace />,
   },
   {
     path: 'search/:pageNumber',

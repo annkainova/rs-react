@@ -1,15 +1,16 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import Button from '../ui/button/Button';
-import Input from '../ui/input/Input';
-import cl from './SearchBar.module.scss';
+import { useDispatch } from 'react-redux';
+import { setCurrentPage, setSearchQuery } from '../../state/counter/AnimeListSlice';
 
 import useLocalStorage from '../../hooks/useLocalStorage';
 
-interface SearchBarProps {
-  onSearch: (query: string) => void;
-}
+import Button from '../ui/button/Button';
+import Input from '../ui/input/Input';
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+import cl from './SearchBar.module.scss';
+
+const SearchBar: React.FC = () => {
+  const dispatch = useDispatch();
   const [query, setQuery] = useState('');
   const [queryLocal, setValueLocalStorge] = useLocalStorage('searchQuery');
 
@@ -25,8 +26,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     e.preventDefault();
     const trimmedQuery = query.trim();
     setValueLocalStorge(trimmedQuery);
-    // const numberFirstPage = 1;
-    onSearch(trimmedQuery);
+    dispatch(setSearchQuery(trimmedQuery));
+    dispatch(setCurrentPage(1));
   };
 
   return (

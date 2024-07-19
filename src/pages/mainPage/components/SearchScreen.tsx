@@ -1,60 +1,55 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Outlet, /* useNavigate, */ useParams } from 'react-router-dom';
-import SearchBar from '../../../components/searchBar/searchBar';
-import { useGetAnimeQuery } from '../../../api/getAnime';
-import cl from '../mainPage.module.scss';
-import CardSection /* Anime */ from './CardSection';
-import Loader from '../../../components/loader/Loader';
-// import useLocalStorage from '../../../hooks/useLocalStorage';
-import Button from '../../../components/ui/button/Button';
-import ArrowBack from '../../../components/icons/arrowBack';
-import ArrowForward from '../../../components/icons/arrowForward';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { RootState } from '../../../state/store';
 import { setCurrentPage, setSearchQuery } from '../../../state/counter/AnimeListSlice';
+import { useGetAnimeQuery } from '../../../api/getAnime';
+
+import useLocalStorage from '../../../hooks/useLocalStorage';
+
+import SearchBar from '../../../components/searchBar/searchBar';
+import CardSection from './CardSection';
+import Loader from '../../../components/loader/Loader';
+import Pagination from '../../../components/pagination/Pagination';
+
+import cl from '../mainPage.module.scss';
 
 const SearchScreen: React.FC = () => {
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { pageNumber } = useParams<{ pageNumber?: string }>();
-
-  // const [currentPage, setCurrentPage] = useState(Number(pageNumber) || 1);
-  // const [queryLocal, , deleteValueLocalStorge] = useLocalStorage('searchQuery');
+  const [queryLocal, setValueLocalStorge, deleteValueLocalStorge] = useLocalStorage('searchQuery');
 
   const currentPage = useSelector((state: RootState) => state.anime.currentPage);
   const searchQuery = useSelector((state: RootState) => state.anime.searchQuery);
 
   useEffect(() => {
+    if (queryLocal) {
+      dispatch(setSearchQuery(queryLocal));
+    }
     if (pageNumber) {
       dispatch(setCurrentPage(Number(pageNumber)));
     }
-  }, [dispatch, pageNumber]);
+  }, [dispatch, pageNumber, queryLocal]);
 
   const limit = 8;
   const offset = currentPage * limit;
 
-  const { data, /* error, */ isLoading } = useGetAnimeQuery({ request: searchQuery, offset });
+  const { data, isLoading, isFetching } = useGetAnimeQuery({ request: searchQuery, offset });
 
-  const handleNextPage = () => {
-    const nextPage = currentPage + 1;
-    setCurrentPage(nextPage);
-  };
+  useEffect(() => {
+    setValueLocalStorge(searchQuery);
+  }, [setValueLocalStorge, searchQuery]);
 
-  const handlePreviousPage = () => {
-    const prevPage = currentPage > 1 ? currentPage - 1 : 1;
-    setCurrentPage(prevPage);
-  };
+  useEffect(() => {
+    navigate(`/search/${currentPage}`);
+  }, [navigate, currentPage]);
 
-  const handleClickOnLogo = async () => {
-    // deleteValueLocalStorge();
-    // performSearch('');
-    setCurrentPage(1);
-  };
-
-  const performSearch = (query: string) => {
-    dispatch(setSearchQuery(query));
-    setCurrentPage(1);
+  const handleClickOnLogo = () => {
+    deleteValueLocalStorge();
+    dispatch(setSearchQuery(''));
+    dispatch(setCurrentPage(1));
   };
 
   const defaultImage = 'https://i.imgur.com/i9anCwy.jpg';
@@ -70,7 +65,7 @@ const SearchScreen: React.FC = () => {
         </h1>
         <div className="grid">
           <div className={cl.searchBox}>
-            <SearchBar onSearch={performSearch} />
+            <SearchBar />
           </div>
         </div>
         <div className="gradient gradient-top"></div>
@@ -80,20 +75,11 @@ const SearchScreen: React.FC = () => {
       </section>
       <section className={cl.cardSection}>
         <div className={cl.cardSection__wrapper}>
-          {isLoading ? <Loader /> : <CardSection animeList={data?.data || []} />}
+          {isFetching ? <Loader /> : <CardSection animeList={data?.data || []} />}
           <Outlet />
         </div>
 
-        {!isLoading && (
-          <div className={cl.paginationButtons}>
-            <Button onClick={handlePreviousPage} disabled={currentPage === 1}>
-              <ArrowBack />
-            </Button>
-            <Button onClick={handleNextPage} disabled={data?.data.length === 0}>
-              <ArrowForward />
-            </Button>
-          </div>
-        )}
+        {!isLoading && <Pagination data={data!.data} />}
       </section>
     </main>
   );

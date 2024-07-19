@@ -2,21 +2,25 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Anime } from '../../pages/mainPage/components/CardSection';
 
 interface AnimeListSlice {
-  animeList: Anime[];
+  animeListOnPage: Anime[];
   searchQuery: string;
   currentPage: number;
 }
 
 const initialState: AnimeListSlice = {
-  animeList: [],
+  animeListOnPage: [],
   searchQuery: '',
-  currentPage: 0,
+  currentPage: 1,
 };
 
 const animeListSlice = createSlice({
   name: 'anime',
   initialState,
   reducers: {
+    setAnimeListOnPage(state, action: PayloadAction<Anime[]>) {
+      const newState = state;
+      newState.animeListOnPage = action.payload;
+    },
     setSearchQuery(state, action: PayloadAction<string>) {
       const newState = state;
       newState.searchQuery = action.payload;
