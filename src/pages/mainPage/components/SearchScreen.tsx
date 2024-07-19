@@ -1,44 +1,40 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Outlet, /* useNavigate, */ useParams } from 'react-router-dom';
 import SearchBar from '../../../components/searchBar/searchBar';
-import { getAnime } from '../../../api/getAnime';
+import { useGetAnimeQuery } from '../../../api/getAnime';
 import cl from '../mainPage.module.scss';
-import CardSection, { Anime } from './CardSection';
+import CardSection /* Anime */ from './CardSection';
 import Loader from '../../../components/loader/Loader';
-import useLocalStorage from '../../../hooks/useLocalStorage';
+// import useLocalStorage from '../../../hooks/useLocalStorage';
 import Button from '../../../components/ui/button/Button';
 import ArrowBack from '../../../components/icons/arrowBack';
 import ArrowForward from '../../../components/icons/arrowForward';
+import { RootState } from '../../../state/store';
+import { setCurrentPage, setSearchQuery } from '../../../state/counter/AnimeListSlice';
 
 const SearchScreen: React.FC = () => {
+  // const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const { pageNumber } = useParams<{ pageNumber?: string }>();
-  const [animeList, setAnimeList] = useState<Anime[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(Number(pageNumber) || 1);
 
-  const [queryLocal, , deleteValueLocalStorge] = useLocalStorage('searchQuery');
-  const navigate = useNavigate();
+  // const [currentPage, setCurrentPage] = useState(Number(pageNumber) || 1);
+  // const [queryLocal, , deleteValueLocalStorge] = useLocalStorage('searchQuery');
 
-  const performSearch = useCallback(
-    async (searchQuery: string, page: number = 1) => {
-      setIsLoading(true);
-      const limit = 8;
-      const offset = page * limit;
-      const animeListResponse = await getAnime(searchQuery, limit, offset);
-      setIsLoading(false);
-      setAnimeList(animeListResponse);
-      navigate(`/search/${page}`);
-    },
-    [navigate]
-  );
+  const currentPage = useSelector((state: RootState) => state.anime.currentPage);
+  const searchQuery = useSelector((state: RootState) => state.anime.searchQuery);
 
   useEffect(() => {
-    if (queryLocal) {
-      performSearch(queryLocal, currentPage);
-    } else {
-      performSearch('', currentPage);
+    if (pageNumber) {
+      dispatch(setCurrentPage(Number(pageNumber)));
     }
-  }, [performSearch, queryLocal, currentPage]);
+  }, [dispatch, pageNumber]);
+
+  const limit = 8;
+  const offset = currentPage * limit;
+
+  const { data, /* error, */ isLoading } = useGetAnimeQuery({ request: searchQuery, offset });
 
   const handleNextPage = () => {
     const nextPage = currentPage + 1;
@@ -51,16 +47,20 @@ const SearchScreen: React.FC = () => {
   };
 
   const handleClickOnLogo = async () => {
-    deleteValueLocalStorge();
-    performSearch('');
+    // deleteValueLocalStorge();
+    // performSearch('');
+    setCurrentPage(1);
+  };
+
+  const performSearch = (query: string) => {
+    dispatch(setSearchQuery(query));
     setCurrentPage(1);
   };
 
   const defaultImage = 'https://i.imgur.com/i9anCwy.jpg';
-  const coverImage =
-    animeList.length > 0 && animeList[0].attributes.coverImage
-      ? animeList[0].attributes.coverImage.original
-      : defaultImage;
+  const coverImage = data?.data.length
+    ? data.data[0].attributes.coverImage?.original
+    : defaultImage;
 
   return (
     <main>
@@ -80,7 +80,7 @@ const SearchScreen: React.FC = () => {
       </section>
       <section className={cl.cardSection}>
         <div className={cl.cardSection__wrapper}>
-          {isLoading ? <Loader /> : <CardSection animeList={animeList} />}
+          {isLoading ? <Loader /> : <CardSection animeList={data?.data || []} />}
           <Outlet />
         </div>
 
@@ -89,7 +89,7 @@ const SearchScreen: React.FC = () => {
             <Button onClick={handlePreviousPage} disabled={currentPage === 1}>
               <ArrowBack />
             </Button>
-            <Button onClick={handleNextPage} disabled={animeList.length === 0}>
+            <Button onClick={handleNextPage} disabled={data?.data.length === 0}>
               <ArrowForward />
             </Button>
           </div>

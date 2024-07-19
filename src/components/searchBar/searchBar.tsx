@@ -6,7 +6,7 @@ import cl from './SearchBar.module.scss';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
 interface SearchBarProps {
-  onSearch: (query: string, page: number) => void;
+  onSearch: (query: string) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
@@ -25,8 +25,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     e.preventDefault();
     const trimmedQuery = query.trim();
     setValueLocalStorge(trimmedQuery);
-    const numberFirstPage = 1;
-    onSearch(trimmedQuery, numberFirstPage);
+    // const numberFirstPage = 1;
+    onSearch(trimmedQuery);
   };
 
   return (
