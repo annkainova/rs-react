@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { RootState } from '../../../state/store';
@@ -75,8 +75,11 @@ const SearchScreen: React.FC = () => {
       </section>
       <section className={cl.cardSection}>
         <div className={cl.cardSection__wrapper}>
-          {isFetching ? <Loader /> : <CardSection animeList={data?.data || []} />}
-          <Outlet />
+          {isFetching || isLoading ? <Loader /> : <CardSection animeList={data?.data || []} />}
+
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
         </div>
 
         {!isLoading && <Pagination data={data!.data} />}

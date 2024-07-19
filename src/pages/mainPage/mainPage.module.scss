@@ -44,14 +44,14 @@
   gap: 48px;
 
   &__wrapper {
-    display: grid;
-    grid-template-columns: 1.8fr 1fr;
+    display: flex;
   }
 
   &__box {
     display: flex;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: center;
+    width: 100%;
     gap: 36px;
 
     @media (width <=1000px) {
@@ -67,4 +67,3 @@
     font-size: 18px;
   }
 }
-

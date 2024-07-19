@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { CardProps } from '../card/Card';
@@ -29,18 +29,18 @@ const CardInfo: React.FC<CardInfoProps> = ({
     navigate(`/search/${pageNumber}`);
   };
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
-      handleClose();
-    }
-  };
+  // const handleClickOutside = (event: MouseEvent) => {
+  //   if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
+  //     handleClose();
+  //   }
+  // };
 
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  });
+  // useEffect(() => {
+  //   document.addEventListener('mousedown', handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   };
+  // });
 
   return (
     <div className={cl.cardInfo__box} ref={cardRef}>

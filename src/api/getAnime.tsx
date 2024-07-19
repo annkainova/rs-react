@@ -31,7 +31,7 @@ export const animeApi = createApi({
   endpoints: (builder) => ({
     getAnime: builder.query<{ data: Anime[] }, { request: string; offset: number }>({
       query: ({ request, offset }) =>
-        `anime?filter[text]=${request}&page[limit]=8&page[offset]=${offset}`,
+        `anime?filter[text]=${request}&page[limit]=12&page[offset]=${offset}`,
     }),
   }),
 });
