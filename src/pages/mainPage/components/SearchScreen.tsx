@@ -2,7 +2,11 @@ import React, { Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { RootState } from '../../../state/store';
-import { setCurrentPage, setSearchQuery } from '../../../state/counter/AnimeListSlice';
+import {
+  setAnimeListOnPage,
+  setCurrentPage,
+  setSearchQuery,
+} from '../../../state/counter/AnimeListSlice';
 import { useGetAnimeQuery } from '../../../api/getAnime';
 
 import useLocalStorage from '../../../hooks/useLocalStorage';
@@ -23,6 +27,7 @@ const SearchScreen: React.FC = () => {
 
   const currentPage = useSelector((state: RootState) => state.anime.currentPage);
   const searchQuery = useSelector((state: RootState) => state.anime.searchQuery);
+  // const animeListOnPage = useSelector((state: RootState) => state.anime.animeListOnPage);
 
   useEffect(() => {
     if (queryLocal) {
@@ -33,19 +38,24 @@ const SearchScreen: React.FC = () => {
     }
   }, [dispatch, pageNumber, queryLocal]);
 
-  const limit = 8;
+  const limit = 12;
   const offset = currentPage * limit;
 
   const { data, isLoading, isFetching } = useGetAnimeQuery({ request: searchQuery, offset });
 
   useEffect(() => {
     setValueLocalStorge(searchQuery);
-  }, [setValueLocalStorge, searchQuery]);
+
+    if (data) {
+      dispatch(setAnimeListOnPage(data.data));
+    }
+  }, [setValueLocalStorge, searchQuery, dispatch, data]);
 
   useEffect(() => {
     navigate(`/search/${currentPage}`);
   }, [navigate, currentPage]);
 
+  // console.log('animeListOnPage', animeListOnPage);
   const handleClickOnLogo = () => {
     deleteValueLocalStorge();
     dispatch(setSearchQuery(''));

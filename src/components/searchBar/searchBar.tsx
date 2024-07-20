@@ -8,6 +8,7 @@ import Button from '../ui/button/Button';
 import Input from '../ui/input/Input';
 
 import cl from './SearchBar.module.scss';
+import SearchIcon from '../icons/search';
 
 const SearchBar: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,13 +33,16 @@ const SearchBar: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className={cl.searchBar}>
-      <Input
-        type="text"
-        id="search"
-        value={query}
-        onChange={handleChange}
-        placeholder="Search More"
-      />
+      <div className={cl.searchBar__input}>
+        <SearchIcon />
+        <Input
+          type="text"
+          id="search"
+          value={query}
+          onChange={handleChange}
+          placeholder="Search More"
+        />
+      </div>
       <Button isMain={true}>Search</Button>
     </form>
   );

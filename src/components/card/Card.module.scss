@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: column;
   width: 200px;
-  transition:
-    transform 0.3s ease-in-out,
-    box-shadow 0.3s ease;
+  // transition:
+  //   transform 0.3s ease-in-out,
+  //   box-shadow 0.3s ease;
   gap: 14px;
 
-  &:hover {
-    transform: translateY(-10px);
-  }
+  // &:hover {
+  //   transform: translateY(-10px);
+  // }
 
   &__img {
     position: relative;
@@ -61,4 +61,9 @@
   color: var(--light-color);
   background: var(--accent-color);
   gap: 6px;
+}
+
+
+.bottomBlock {
+  display: flex;
 }

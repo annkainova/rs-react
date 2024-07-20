@@ -33,25 +33,10 @@ export const animeApi = createApi({
       query: ({ request, offset }) =>
         `anime?filter[text]=${request}&page[limit]=12&page[offset]=${offset}`,
     }),
+    getAnimeById: builder.query<{ data: Anime }, { animeId: string | undefined }>({
+      query: ({ animeId }) => `anime/${animeId}`,
+    }),
   }),
 });
 
-export const { useGetAnimeQuery } = animeApi;
-
-export const getAnimeById = async (animeId: string) => {
-  try {
-    const response = await fetch(`https://kitsu.io/api/edge/anime/${animeId}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/vnd.api+json',
-        'Content-Type': 'application/vnd.api+json',
-      },
-    });
-
-    const data = await response.json();
-    return data.data;
-  } catch (error) {
-    console.error('Error fetching anime by ID:', error);
-    return null;
-  }
-};
+export const { useGetAnimeQuery, useGetAnimeByIdQuery } = animeApi;

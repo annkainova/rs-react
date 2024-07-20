@@ -1,33 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getAnimeById } from '../../../api/getAnime';
-import { Anime } from './CardSection';
+import { useGetAnimeByIdQuery } from '../../../api/getAnime';
 
 import Loader from '../../../components/loader/Loader';
 import CardInfo from '../../../components/CardInfo/CardInfo';
 
 import cl from '../../../components/CardInfo/CardInfo.module.scss';
+import { setDetailCard } from '../../../state/counter/AnimeListSlice';
 
 const DetailedInformation: React.FC = () => {
+  const dispatch = useDispatch();
   const { cardId } = useParams<{ cardId: string }>();
-  const [isLoading, setIsLoading] = useState(false);
-  const [anime, setAnime] = useState<Anime | null>(null);
-
-  const searchAnimeById = async (id: string) => {
-    setIsLoading(true);
-    const searchAnimeResponse = await getAnimeById(id);
-    setIsLoading(false);
-    setAnime(searchAnimeResponse);
-  };
+  const { data, isFetching } = useGetAnimeByIdQuery({ animeId: cardId });
 
   useEffect(() => {
-    if (cardId) {
-      setIsLoading(true);
-      searchAnimeById(cardId);
+    if (data) {
+      dispatch(setDetailCard(data.data));
     }
-  }, [cardId]);
+  }, [data, dispatch]);
 
-  if (isLoading) {
+  if (isFetching) {
     return (
       <div className={cl.cardInfo}>
         <Loader />
@@ -36,20 +29,20 @@ const DetailedInformation: React.FC = () => {
     );
   }
 
-  if (!anime) {
+  if (!data?.data) {
     return <></>;
   }
 
   return (
     <div className={cl.cardInfo}>
       <CardInfo
-        key={anime.id}
-        title={anime.attributes.canonicalTitle}
-        yearStart={anime.attributes.startDate}
-        rating={anime.attributes.averageRating}
-        imgLink={anime.attributes.posterImage.large}
-        episods={anime.attributes.totalLength}
-        description={anime.attributes.description}
+        key={data?.data.id}
+        title={data!.data.attributes.canonicalTitle}
+        yearStart={data!.data.attributes.startDate}
+        rating={data!.data.attributes.averageRating}
+        imgLink={data!.data.attributes.posterImage.large}
+        episods={data!.data.attributes.totalLength}
+        description={data!.data.attributes.description}
       />
     </div>
   );

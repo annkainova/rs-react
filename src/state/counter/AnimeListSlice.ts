@@ -3,12 +3,14 @@ import { Anime } from '../../pages/mainPage/components/CardSection';
 
 interface AnimeListSlice {
   animeListOnPage: Anime[];
+  detailCard: Anime | null;
   searchQuery: string;
   currentPage: number;
 }
 
 const initialState: AnimeListSlice = {
   animeListOnPage: [],
+  detailCard: null,
   searchQuery: '',
   currentPage: 1,
 };
@@ -21,6 +23,10 @@ const animeListSlice = createSlice({
       const newState = state;
       newState.animeListOnPage = action.payload;
     },
+    setDetailCard(state, action: PayloadAction<Anime>) {
+      const newState = state;
+      newState.detailCard = action.payload;
+    },
     setSearchQuery(state, action: PayloadAction<string>) {
       const newState = state;
       newState.searchQuery = action.payload;
@@ -32,5 +38,6 @@ const animeListSlice = createSlice({
   },
 });
 
-export const { setSearchQuery, setCurrentPage } = animeListSlice.actions;
+export const { setSearchQuery, setCurrentPage, setAnimeListOnPage, setDetailCard } =
+  animeListSlice.actions;
 export default animeListSlice.reducer;

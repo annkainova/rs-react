@@ -1,3 +1,9 @@
+.inputWrapper {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
 .input {
   border: none;
   width: 100%;
@@ -7,17 +13,49 @@
   background: none;
 }
 
-::placeholder {
-  color: var(--light-color);
+.checkbox {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  cursor: pointer;
 }
 
-.searchBar__input {
-  display: flex;
-  align-items: center;
-  border: 1px solid #fff;
-  border-radius: 14px;
-  padding: 0 14px;
-  gap: 14px;
+.customCheckbox {
+  position: relative;
+  border: 1px solid var(--light-color);
+  border-radius: 7px;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  transition: background-color 0.3s;
+}
+
+.inputWrapper input:checked+.customCheckbox {
+  border: 1px solid var(--accent-color);
+  background-color: var(--accent-color);
+}
+
+.customCheckbox::after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  display: none;
+  border: solid var(--light-color);
+  ;
+  border-width: 0 3px 3px 0;
+  width: 5px;
+  height: 10px;
+  transform: rotate(45deg);
+}
+
+.inputWrapper input:checked+.customCheckbox::after {
+  display: block;
+}
+
+::placeholder {
+  color: var(--light-color);
 }
 
 input:-internal-autofill-selected {

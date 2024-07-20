@@ -56,8 +56,8 @@ body {
   font-size: var(--main-font-size, 16px);
   color: var(--text-color);
   background-color: var(--dark-color);
-    overflow-x: hidden;
-      /* Prevent horizontal overflow */
+  overflow-x: hidden;
+  /* Prevent horizontal overflow */
 }
 
 main {
@@ -72,6 +72,7 @@ img {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 li {

@@ -9,3 +9,13 @@
     padding: 0 20px;
   }
 }
+
+
+.searchBar__input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #fff;
+  border-radius: 14px;
+  padding: 0 14px;
+  gap: 14px;
+}
