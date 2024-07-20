@@ -6,6 +6,8 @@ interface AnimeListSlice {
   detailCard: Anime | null;
   searchQuery: string;
   currentPage: number;
+
+  selectedElements: Anime[];
 }
 
 const initialState: AnimeListSlice = {
@@ -13,6 +15,7 @@ const initialState: AnimeListSlice = {
   detailCard: null,
   searchQuery: '',
   currentPage: 1,
+  selectedElements: [],
 };
 
 const animeListSlice = createSlice({
@@ -35,9 +38,29 @@ const animeListSlice = createSlice({
       const newState = state;
       newState.currentPage = action.payload;
     },
+    setSelectedElements(state, action: PayloadAction<Anime>) {
+      if (
+        !state.selectedElements.some((anime) => anime.id === action.payload.id)
+      ) {
+        const newState = state;
+        newState.selectedElements?.push(action.payload);
+      }
+    },
+    deleteSelectedElements(state, action: PayloadAction<string>) {
+      const newState = state;
+      newState.selectedElements = newState.selectedElements.filter(
+        (anime) => anime.id !== action.payload
+      );
+    },
   },
 });
 
-export const { setSearchQuery, setCurrentPage, setAnimeListOnPage, setDetailCard } =
-  animeListSlice.actions;
+export const {
+  setSearchQuery,
+  setCurrentPage,
+  setAnimeListOnPage,
+  setDetailCard,
+  setSelectedElements,
+  deleteSelectedElements,
+} = animeListSlice.actions;
 export default animeListSlice.reducer;
