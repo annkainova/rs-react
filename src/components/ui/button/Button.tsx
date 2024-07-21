@@ -7,13 +7,27 @@ interface ButtonProps {
   children?: React.ReactNode;
   isMain?: boolean;
   disabled?: boolean;
+  isGrey?: boolean;
+  isOutline?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, children, isMain, disabled }) => (
+const Button: React.FC<ButtonProps> = ({
+  onClick,
+  children,
+  isMain,
+  disabled,
+  isGrey,
+  isOutline,
+}) => (
   <button
     onClick={onClick}
     type="submit"
-    className={cn(isMain ? cl.buttonMain : cl.buttonSqr, cl.button)}
+    className={cn(
+      isMain ? cl.buttonMain : cl.buttonSqr,
+      isGrey && cl.btnGrey,
+      isOutline && cl.btnOutline,
+      cl.button
+    )}
     disabled={disabled}
   >
     {children}

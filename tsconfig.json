@@ -17,6 +17,11 @@
     "jsx": "react-jsx",
     "allowImportingTsExtensions": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "vitest.config.ts", "vitest.setup.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "vitest.config.ts",
+    "vitest.setup.ts"
+  ],
   "exclude": ["node_modules"]
 }

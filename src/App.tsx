@@ -1,5 +1,9 @@
 import React from 'react';
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';

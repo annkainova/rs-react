@@ -64,7 +64,11 @@ const CardInfo: React.FC<CardInfoProps> = ({
       </div>
 
       <div className={cl.gradient}></div>
-      <img className={cl.cardInfo__image} src={imgLink} alt={`poster image ${title}`} />
+      <img
+        className={cl.cardInfo__image}
+        src={imgLink}
+        alt={`poster image ${title}`}
+      />
     </div>
   );
 };

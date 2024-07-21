@@ -10,7 +10,14 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: React.FC<InputProps> = ({ type, id, value, placeholder, onChange, ...rest }) => (
+const Input: React.FC<InputProps> = ({
+  type,
+  id,
+  value,
+  placeholder,
+  onChange,
+  ...rest
+}) => (
   <label className={cl.inputWrapper}>
     <input
       className={classNames({

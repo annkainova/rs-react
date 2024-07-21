@@ -1,6 +1,9 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setCurrentPage, setSearchQuery } from '../../state/counter/AnimeListSlice';
+import {
+  setCurrentPage,
+  setSearchQuery,
+} from '../../state/counter/AnimeListSlice';
 
 import useLocalStorage from '../../hooks/useLocalStorage';
 

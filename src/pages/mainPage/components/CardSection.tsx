@@ -9,6 +9,7 @@ import {
   deleteSelectedElements,
   setSelectedElements,
 } from '../../../state/counter/AnimeListSlice';
+import FlyoutElement from '../../../components/FlyoutElement/FlyoutElement';
 
 export interface Anime {
   id: string;
@@ -49,6 +50,10 @@ const CardSection: React.FC<CardSectionProps> = ({ animeList }) => {
 
   return (
     <>
+      {selectedItems.length >= 1 && (
+        <FlyoutElement countElements={selectedItems.length} />
+      )}
+
       <div className={cl.cardSection__box}>
         {animeList.map((anime: Anime) => (
           <div className={cl.cardBox}>
@@ -66,6 +71,9 @@ const CardSection: React.FC<CardSectionProps> = ({ animeList }) => {
                 type="checkbox"
                 id="checkbox"
                 onChange={() => handleChangeCheckbox(anime)}
+                checked={selectedItems.some(
+                  (itemAnime) => anime.id === itemAnime.id
+                )}
               />
             </div>
           </div>

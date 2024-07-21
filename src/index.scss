@@ -109,11 +109,19 @@ li {
 }
 
 .gradient-bottom-light {
-  background: linear-gradient(0deg, rgba(18, 18, 18, 0.6) 6.8%, rgba(18, 18, 18, 0) 120.11%);
+  background: linear-gradient(
+    0deg,
+    rgba(18, 18, 18, 0.6) 6.8%,
+    rgba(18, 18, 18, 0) 120.11%
+  );
 }
 
 .gradient-left {
-  background: linear-gradient(90deg, rgba(18, 18, 18, 0.6) 6.8%, rgba(18, 18, 18, 0) 120.11%);
+  background: linear-gradient(
+    90deg,
+    rgba(18, 18, 18, 0.6) 6.8%,
+    rgba(18, 18, 18, 0) 120.11%
+  );
 }
 
 .gradient-bottom {

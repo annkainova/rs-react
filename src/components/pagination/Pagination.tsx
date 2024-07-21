@@ -15,7 +15,9 @@ interface PaginationProps {
 
 const Pagination: React.FC<PaginationProps> = ({ data }) => {
   const dispatch = useDispatch();
-  const currentPage = useSelector((state: RootState) => state.anime.currentPage);
+  const currentPage = useSelector(
+    (state: RootState) => state.anime.currentPage
+  );
 
   const handleNextPage = () => {
     const nextPage = currentPage + 1;

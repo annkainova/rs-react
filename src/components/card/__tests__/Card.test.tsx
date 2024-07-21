@@ -83,7 +83,9 @@ describe('Card', () => {
     });
 
     expect(screen.getByText('Test Anime 1')).toBeInTheDocument();
-    expect(screen.getByText('Description for Test Anime 1')).toBeInTheDocument();
+    expect(
+      screen.getByText('Description for Test Anime 1')
+    ).toBeInTheDocument();
   });
 
   it('checks that clicking triggers an additional API call to fetch detailed information', async () => {
@@ -108,6 +110,8 @@ describe('Card', () => {
     expect(getAnimeById).toHaveBeenCalledWith('1');
 
     expect(screen.getByText('Test Anime 1')).toBeInTheDocument();
-    expect(screen.getByText('Description for Test Anime 1')).toBeInTheDocument();
+    expect(
+      screen.getByText('Description for Test Anime 1')
+    ).toBeInTheDocument();
   });
 });

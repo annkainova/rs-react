@@ -7,7 +7,8 @@ export const store = configureStore({
     anime: AnimeListReduser,
     [animeApi.reducerPath]: animeApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(animeApi.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(animeApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -8,7 +8,11 @@ const BugIcon = () => (
     stroke="#ffffff"
   >
     <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-    <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+    <g
+      id="SVGRepo_tracerCarrier"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    ></g>
     <g id="SVGRepo_iconCarrier">
       {' '}
       <path
@@ -17,8 +21,18 @@ const BugIcon = () => (
         strokeWidth="1.5"
         strokeLinecap="round"
       ></path>{' '}
-      <path d="M19 13H22" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round"></path>{' '}
-      <path d="M5 13H2" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round"></path>{' '}
+      <path
+        d="M19 13H22"
+        stroke="#ffffff"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      ></path>{' '}
+      <path
+        d="M5 13H2"
+        stroke="#ffffff"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      ></path>{' '}
       <path
         d="M20.4999 7L18.7021 7.71909"
         stroke="#ffffff"
@@ -31,8 +45,18 @@ const BugIcon = () => (
         strokeWidth="1.5"
         strokeLinecap="round"
       ></path>{' '}
-      <path d="M14.5 3.5L17 2" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round"></path>{' '}
-      <path d="M9.5 3.5L7 2" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round"></path>{' '}
+      <path
+        d="M14.5 3.5L17 2"
+        stroke="#ffffff"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      ></path>{' '}
+      <path
+        d="M9.5 3.5L7 2"
+        stroke="#ffffff"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      ></path>{' '}
       <path
         d="M20.5 19.0002L18.5 18.2002"
         stroke="#ffffff"
@@ -45,8 +69,18 @@ const BugIcon = () => (
         strokeWidth="1.5"
         strokeLinecap="round"
       ></path>{' '}
-      <path d="M10.5 10.5H13.5" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round"></path>{' '}
-      <path d="M10.5 15.5H13.5" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round"></path>{' '}
+      <path
+        d="M10.5 10.5H13.5"
+        stroke="#ffffff"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      ></path>{' '}
+      <path
+        d="M10.5 15.5H13.5"
+        stroke="#ffffff"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      ></path>{' '}
     </g>
   </svg>
 );

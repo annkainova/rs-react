@@ -23,10 +23,15 @@ const SearchScreen: React.FC = () => {
   const navigate = useNavigate();
 
   const { pageNumber } = useParams<{ pageNumber?: string }>();
-  const [queryLocal, setValueLocalStorge, deleteValueLocalStorge] = useLocalStorage('searchQuery');
+  const [queryLocal, setValueLocalStorge, deleteValueLocalStorge] =
+    useLocalStorage('searchQuery');
 
-  const currentPage = useSelector((state: RootState) => state.anime.currentPage);
-  const searchQuery = useSelector((state: RootState) => state.anime.searchQuery);
+  const currentPage = useSelector(
+    (state: RootState) => state.anime.currentPage
+  );
+  const searchQuery = useSelector(
+    (state: RootState) => state.anime.searchQuery
+  );
   // const animeListOnPage = useSelector((state: RootState) => state.anime.animeListOnPage);
 
   useEffect(() => {
@@ -41,7 +46,10 @@ const SearchScreen: React.FC = () => {
   const limit = 12;
   const offset = currentPage * limit;
 
-  const { data, isLoading, isFetching } = useGetAnimeQuery({ request: searchQuery, offset });
+  const { data, isLoading, isFetching } = useGetAnimeQuery({
+    request: searchQuery,
+    offset,
+  });
 
   useEffect(() => {
     setValueLocalStorge(searchQuery);
@@ -85,7 +93,11 @@ const SearchScreen: React.FC = () => {
       </section>
       <section className={cl.cardSection}>
         <div className={cl.cardSection__wrapper}>
-          {isFetching || isLoading ? <Loader /> : <CardSection animeList={data?.data || []} />}
+          {isFetching || isLoading ? (
+            <Loader />
+          ) : (
+            <CardSection animeList={data?.data || []} />
+          )}
 
           <Suspense fallback={<Loader />}>
             <Outlet />
