@@ -63,7 +63,7 @@ const CardInfo: React.FC<CardInfoProps> = ({
         </Button>
       </div>
 
-      <div className={cl.gradient}></div>
+      <div className="gradient gradient__card-info"></div>
       <img
         className={cl.cardInfo__image}
         src={imgLink}

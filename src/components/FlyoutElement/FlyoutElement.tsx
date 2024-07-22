@@ -1,10 +1,12 @@
-import React from 'react';
+import cn from 'classnames';
+import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../ui/button/Button';
 
 import cl from './FlyoutElement.module.scss';
 import { RootState } from '../../state/store';
 import { deleteAllSelectedElements } from '../../state/counter/AnimeListSlice';
+import ThemeContext from '../../ThemeContext';
 
 interface FlyoutElementProps {
   countElements: number;
@@ -14,6 +16,8 @@ const FlyoutElement: React.FC<FlyoutElementProps> = ({ countElements }) => {
   const selectedItems = useSelector(
     (state: RootState) => state.anime.selectedElements
   );
+  const { mode } = useContext(ThemeContext);
+  const isDarkMode = mode === 'dark';
 
   const handleClickUnselectAll = () => {
     dispatch(deleteAllSelectedElements());
@@ -25,13 +29,18 @@ const FlyoutElement: React.FC<FlyoutElementProps> = ({ countElements }) => {
   };
 
   return (
-    <div className={cl.flyoutElement}>
+    <div className={cn(!isDarkMode && cl.lightMode, cl.flyoutElement)}>
       <p className={cl.flyoutElement__text}>{countElements} items selected</p>
       <div className={cl.buttonBox}>
         <Button isMain={true} onClick={handleClickDownload}>
           Download
         </Button>
-        <Button isMain={true} isOutline={true} onClick={handleClickUnselectAll}>
+        <Button
+          isMain={true}
+          isOutline={isDarkMode}
+          isGrey={!isDarkMode}
+          onClick={handleClickUnselectAll}
+        >
           Unselect all
         </Button>
       </div>

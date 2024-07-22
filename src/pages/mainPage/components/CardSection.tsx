@@ -56,8 +56,8 @@ const CardSection: React.FC<CardSectionProps> = ({ animeList }) => {
 
       <div className={cl.cardSection__box}>
         {animeList.map((anime: Anime) => (
-          <div className={cl.cardBox}>
-            <Link key={anime.id} to={`card/${anime.id}`}>
+          <div key={anime.id} className={cl.cardBox}>
+            <Link to={`card/${anime.id}`}>
               <Card
                 title={anime.attributes.canonicalTitle}
                 yearStart={anime.attributes.startDate}
@@ -68,6 +68,7 @@ const CardSection: React.FC<CardSectionProps> = ({ animeList }) => {
             <div className={cl.checkboxBox}>
               {' '}
               <Input
+                // key={anime.id}
                 type="checkbox"
                 id="checkbox"
                 onChange={() => handleChangeCheckbox(anime)}

@@ -1,4 +1,5 @@
-import React, { Suspense, useEffect } from 'react';
+import cn from 'classnames';
+import React, { Suspense, useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { RootState } from '../../../state/store';
@@ -17,6 +18,10 @@ import Loader from '../../../components/loader/Loader';
 import Pagination from '../../../components/pagination/Pagination';
 
 import cl from '../mainPage.module.scss';
+import Button from '../../../components/ui/button/Button';
+import ThemeContext from '../../../ThemeContext';
+import Moon from '../../../components/icons/moon';
+import Sun from '../../../components/icons/sun';
 
 const SearchScreen: React.FC = () => {
   const dispatch = useDispatch();
@@ -25,6 +30,7 @@ const SearchScreen: React.FC = () => {
   const { pageNumber } = useParams<{ pageNumber?: string }>();
   const [queryLocal, setValueLocalStorge, deleteValueLocalStorge] =
     useLocalStorage('searchQuery');
+  const { mode, toggleTheme } = useContext(ThemeContext);
 
   const currentPage = useSelector(
     (state: RootState) => state.anime.currentPage
@@ -32,7 +38,6 @@ const SearchScreen: React.FC = () => {
   const searchQuery = useSelector(
     (state: RootState) => state.anime.searchQuery
   );
-  // const animeListOnPage = useSelector((state: RootState) => state.anime.animeListOnPage);
 
   useEffect(() => {
     if (queryLocal) {
@@ -63,7 +68,6 @@ const SearchScreen: React.FC = () => {
     navigate(`/search/${currentPage}`);
   }, [navigate, currentPage]);
 
-  // console.log('animeListOnPage', animeListOnPage);
   const handleClickOnLogo = () => {
     deleteValueLocalStorge();
     dispatch(setSearchQuery(''));
@@ -75,12 +79,19 @@ const SearchScreen: React.FC = () => {
     ? data.data[0].attributes.coverImage?.original
     : defaultImage;
 
+  const isDarkMode = mode === 'dark';
+
   return (
-    <main>
-      <section className={cl.searchScreen}>
-        <h1 onClick={handleClickOnLogo} className={cl.searchScreen__title}>
+    <main className={cn(isDarkMode ? 'darkMode' : 'lightMode')}>
+      <div className={cl.topBox}>
+        <h1 onClick={handleClickOnLogo} className={cl.logo}>
           anime.search
         </h1>
+        <Button onClick={toggleTheme} isOutline={true}>
+          {isDarkMode ? <Sun /> : <Moon />}
+        </Button>
+      </div>
+      <section className={cl.searchScreen}>
         <div className="grid">
           <div className={cl.searchBox}>
             <SearchBar />

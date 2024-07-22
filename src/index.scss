@@ -50,14 +50,23 @@ html {
 }
 
 body {
+  overflow-x: hidden;
   height: 100%;
   min-width: 360px;
   font-family: var(--font-family), sans-serif;
   font-size: var(--main-font-size, 16px);
+}
+
+.darkMode {
+  z-index: 0;
   color: var(--text-color);
   background-color: var(--dark-color);
-  overflow-x: hidden;
-  /* Prevent horizontal overflow */
+}
+
+.lightMode {
+  z-index: 0;
+  color: var(--dark-color);
+  background: var(--light-color);
 }
 
 main {
@@ -101,6 +110,8 @@ li {
   overflow: hidden;
 }
 
+// gradient
+
 .gradient {
   position: absolute;
   z-index: 5;
@@ -109,6 +120,7 @@ li {
 }
 
 .gradient-bottom-light {
+  border-radius: 24px;
   background: linear-gradient(
     0deg,
     rgba(18, 18, 18, 0.6) 6.8%,
@@ -131,9 +143,35 @@ li {
   background: linear-gradient(180deg, rgba(212, 37, 37, 0) 0%, #121212 80.63%);
 }
 
+.lightMode .gradient-bottom {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 80.63%);
+}
+
 .gradient-top {
   top: 0;
   z-index: 0;
   height: 30%;
   background: linear-gradient(0deg, rgba(212, 37, 37, 0) 0%, #121212 120.63%);
+}
+
+.lightMode .gradient-top {
+  background: linear-gradient(0deg, rgba(212, 37, 37, 0) 0%, #fff 120.63%);
+}
+
+.gradient__card-info {
+  z-index: 10;
+  border-radius: 24px;
+  background: linear-gradient(
+    90deg,
+    rgba(18, 18, 18, 0.9) 6.8%,
+    rgba(18, 18, 18, 0.2) 120.11%
+  );
+}
+
+.lightMode .gradient__card-info {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.9) 6.8%,
+    rgba(255, 255, 255, 0.2) 120.11%
+  );
 }

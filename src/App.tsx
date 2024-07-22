@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   createBrowserRouter,
   Navigate,
@@ -10,14 +10,13 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import SearchScreen from './pages/mainPage/components/SearchScreen';
 import ErrorPage from './pages/errorPage/ErorrPage';
 import DetailedInformation from './pages/mainPage/components/DetailedInformation';
+import ThemeContext from './ThemeContext';
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
     path: '/',
-    // element: <SearchScreen />,
-
     element: <Navigate to="/search/1" replace />,
   },
   {
@@ -33,13 +32,31 @@ const router = createBrowserRouter([
   },
 ]);
 
-const App: React.FC = () => (
-  <ErrorBoundary>
-    <QueryClientProvider client={queryClient}>
-      {/* <Counter /> */}
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  </ErrorBoundary>
-);
+const App: React.FC = () => {
+  const choosenMode = localStorage.getItem('mode') || 'dark';
+
+  const [mode, setIsDarkMode] = useState(choosenMode);
+
+  const toggleTheme = () => {
+    if (mode === 'dark') {
+      setIsDarkMode('light');
+      localStorage.setItem('mode', 'light');
+    } else {
+      setIsDarkMode('dark');
+      localStorage.setItem('mode', 'dark');
+    }
+    // const mode = !isDarkMode ? 'true' : 'false';
+  };
+
+  return (
+    <ErrorBoundary>
+      <ThemeContext.Provider value={{ mode, toggleTheme }}>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
+      </ThemeContext.Provider>
+    </ErrorBoundary>
+  );
+};
 
 export default App;
