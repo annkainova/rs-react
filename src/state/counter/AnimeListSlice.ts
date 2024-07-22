@@ -52,6 +52,10 @@ const animeListSlice = createSlice({
         (anime) => anime.id !== action.payload
       );
     },
+    deleteAllSelectedElements(state) {
+      const newState = state;
+      newState.selectedElements = [];
+    },
   },
 });
 
@@ -62,5 +66,6 @@ export const {
   setDetailCard,
   setSelectedElements,
   deleteSelectedElements,
+  deleteAllSelectedElements,
 } = animeListSlice.actions;
 export default animeListSlice.reducer;
