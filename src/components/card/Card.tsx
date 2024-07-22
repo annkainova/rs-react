@@ -23,7 +23,7 @@ const Card: React.FC<CardProps> = ({ title, yearStart, rating, imgLink }) => (
       <p className={cl.card__title}>{title}</p>
       <div className={cl.bottomBlock}>
         <p className={cl.card__yearStart}>
-          {yearStart ? yearStart.slice(0, 4) : ''}
+          {yearStart && yearStart.slice(0, 4)}
         </p>
       </div>
     </div>

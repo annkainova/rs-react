@@ -52,7 +52,7 @@ const CardInfo: React.FC<CardInfoProps> = ({
             {rating}
           </div>
           <p>{episods} episods</p>
-          <p>{yearStart.slice(0, 4)}</p>
+          <p>{yearStart && yearStart.slice(0, 4)}</p>
         </div>
         <p className={cl.cardInfo__description}>{description}</p>
       </div>
