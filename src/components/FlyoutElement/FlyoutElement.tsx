@@ -7,11 +7,9 @@ import cl from './FlyoutElement.module.scss';
 import { RootState } from '../../state/store';
 import { deleteAllSelectedElements } from '../../state/counter/AnimeListSlice';
 import ThemeContext from '../../ThemeContext';
+import DownloadButton from './components/DownloadButton';
 
-interface FlyoutElementProps {
-  countElements: number;
-}
-const FlyoutElement: React.FC<FlyoutElementProps> = ({ countElements }) => {
+const FlyoutElement: React.FC = () => {
   const dispatch = useDispatch();
   const selectedItems = useSelector(
     (state: RootState) => state.anime.selectedElements
@@ -23,18 +21,13 @@ const FlyoutElement: React.FC<FlyoutElementProps> = ({ countElements }) => {
     dispatch(deleteAllSelectedElements());
   };
 
-  const handleClickDownload = () => {
-    // eslint-disable-next-line no-console
-    console.log(selectedItems);
-  };
-
   return (
     <div className={cn(!isDarkMode && cl.lightMode, cl.flyoutElement)}>
-      <p className={cl.flyoutElement__text}>{countElements} items selected</p>
+      <p className={cl.flyoutElement__text}>
+        {selectedItems.length} items selected
+      </p>
       <div className={cl.buttonBox}>
-        <Button isMain={true} onClick={handleClickDownload}>
-          Download
-        </Button>
+        <DownloadButton />
         <Button
           isMain={true}
           isOutline={isDarkMode}

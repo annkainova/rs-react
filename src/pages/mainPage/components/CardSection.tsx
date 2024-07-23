@@ -50,9 +50,7 @@ const CardSection: React.FC<CardSectionProps> = ({ animeList }) => {
 
   return (
     <>
-      {selectedItems.length >= 1 && (
-        <FlyoutElement countElements={selectedItems.length} />
-      )}
+      {selectedItems.length >= 1 && <FlyoutElement />}
 
       <div className={cl.cardSection__box}>
         {animeList.map((anime: Anime) => (
