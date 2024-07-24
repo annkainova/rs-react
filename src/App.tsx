@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
@@ -17,7 +13,7 @@ const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Navigate to="/search/1" replace />,
+    element: <SearchScreen />,
   },
   {
     path: 'search/:pageNumber',
@@ -45,7 +41,6 @@ const App: React.FC = () => {
       setIsDarkMode('dark');
       localStorage.setItem('mode', 'dark');
     }
-    // const mode = !isDarkMode ? 'true' : 'false';
   };
 
   return (
