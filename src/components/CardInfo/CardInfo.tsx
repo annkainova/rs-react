@@ -29,19 +29,6 @@ const CardInfo: React.FC<CardInfoProps> = ({
     navigate(`/search/${pageNumber}`);
   };
 
-  // const handleClickOutside = (event: MouseEvent) => {
-  //   if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
-  //     handleClose();
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   document.addEventListener('mousedown', handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener('mousedown', handleClickOutside);
-  //   };
-  // });
-
   return (
     <div className={cl.cardInfo__box} ref={cardRef}>
       <div className={cl.cardInfo__info}>
@@ -51,7 +38,7 @@ const CardInfo: React.FC<CardInfoProps> = ({
             <StarIcon />
             {rating}
           </div>
-          <p>{episods} episods</p>
+          <p>{episods} episodes</p>
           <p>{yearStart && yearStart.slice(0, 4)}</p>
         </div>
         <p className={cl.cardInfo__description}>{description}</p>
