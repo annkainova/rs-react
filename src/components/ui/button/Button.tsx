@@ -9,6 +9,7 @@ interface ButtonProps {
   disabled?: boolean;
   isGrey?: boolean;
   isOutline?: boolean;
+  isAсtiveState?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -18,6 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   isGrey,
   isOutline,
+  isAсtiveState,
 }) => (
   <button
     onClick={onClick}
@@ -26,6 +28,7 @@ const Button: React.FC<ButtonProps> = ({
       isMain ? cl.buttonMain : cl.buttonSqr,
       isGrey && cl.btnGrey,
       isOutline && cl.btnOutline,
+      isAсtiveState && cl.btnActive,
       cl.button
     )}
     disabled={disabled}

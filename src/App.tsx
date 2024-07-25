@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
 
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import SearchScreen from './pages/mainPage/components/SearchScreen';
@@ -8,7 +8,7 @@ import ErrorPage from './pages/errorPage/ErorrPage';
 import DetailedInformation from './pages/mainPage/components/DetailedInformation';
 import ThemeContext from './ThemeContext';
 
-const queryClient = new QueryClient();
+import { store } from './state/store';
 
 const router = createBrowserRouter([
   {
@@ -46,9 +46,9 @@ const App: React.FC = () => {
   return (
     <ErrorBoundary>
       <ThemeContext.Provider value={{ mode, toggleTheme }}>
-        <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
           <RouterProvider router={router} />
-        </QueryClientProvider>
+        </Provider>
       </ThemeContext.Provider>
     </ErrorBoundary>
   );

@@ -6,7 +6,7 @@ export const animeApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://kitsu.io/api/edge/' }),
   endpoints: (builder) => ({
     getAnime: builder.query<
-      { data: Anime[] },
+      { data: Anime[]; meta: { count: number } },
       { request: string; offset: number }
     >({
       query: ({ request, offset }) =>

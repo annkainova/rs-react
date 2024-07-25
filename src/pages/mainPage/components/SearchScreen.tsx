@@ -74,6 +74,7 @@ const SearchScreen: React.FC = () => {
     dispatch(setCurrentPage(1));
   };
 
+  const totalItems = data?.meta.count || 0;
   const defaultImage = 'https://i.imgur.com/i9anCwy.jpg';
   const coverImage = data?.data.length
     ? data.data[0].attributes.coverImage?.original
@@ -115,7 +116,11 @@ const SearchScreen: React.FC = () => {
           </Suspense>
         </div>
 
-        {!isLoading && <Pagination data={data!.data} />}
+        {data?.data.length !== 0 ? (
+          !isFetching && <Pagination totalItems={totalItems} />
+        ) : (
+          <></>
+        )}
       </section>
     </main>
   );

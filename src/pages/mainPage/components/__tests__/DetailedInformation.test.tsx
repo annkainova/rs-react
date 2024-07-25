@@ -1,9 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
-import { queryClientTest, storeTest } from './mockAnimeList';
+import { storeTest } from './mockAnimeList';
 import DetailedInformation from '../DetailedInformation';
 
 vi.mock('../../../api/getAnime', async () => ({
@@ -31,13 +30,11 @@ describe('DetailedInformation', () => {
   it('displays a loading indicator while fetching data', async () => {
     render(
       <Provider store={storeTest}>
-        <QueryClientProvider client={queryClientTest}>
-          <MemoryRouter initialEntries={['/card/1']}>
-            <Routes>
-              <Route path="/card/:cardId" element={<DetailedInformation />} />
-            </Routes>{' '}
-          </MemoryRouter>
-        </QueryClientProvider>
+        <MemoryRouter initialEntries={['/card/1']}>
+          <Routes>
+            <Route path="/card/:cardId" element={<DetailedInformation />} />
+          </Routes>{' '}
+        </MemoryRouter>
       </Provider>
     );
 
@@ -51,13 +48,11 @@ describe('DetailedInformation', () => {
   it('hides the component when clicking the close button', async () => {
     render(
       <Provider store={storeTest}>
-        <QueryClientProvider client={queryClientTest}>
-          <MemoryRouter initialEntries={['/card/1']}>
-            <Routes>
-              <Route path="/card/:cardId" element={<DetailedInformation />} />
-            </Routes>{' '}
-          </MemoryRouter>
-        </QueryClientProvider>
+        <MemoryRouter initialEntries={['/card/1']}>
+          <Routes>
+            <Route path="/card/:cardId" element={<DetailedInformation />} />
+          </Routes>{' '}
+        </MemoryRouter>
       </Provider>
     );
 
@@ -74,13 +69,11 @@ describe('DetailedInformation', () => {
   it('hides the component when clicking outside the card', async () => {
     render(
       <Provider store={storeTest}>
-        <QueryClientProvider client={queryClientTest}>
-          <MemoryRouter initialEntries={['/card/1']}>
-            <Routes>
-              <Route path="/card/:cardId" element={<DetailedInformation />} />
-            </Routes>
-          </MemoryRouter>
-        </QueryClientProvider>
+        <MemoryRouter initialEntries={['/card/1']}>
+          <Routes>
+            <Route path="/card/:cardId" element={<DetailedInformation />} />
+          </Routes>
+        </MemoryRouter>
       </Provider>
     );
 
