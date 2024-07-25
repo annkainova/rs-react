@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import SearchScreen from './pages/mainPage/components/SearchScreen';
 import ErrorPage from './pages/errorPage/ErorrPage';
 import DetailedInformation from './pages/mainPage/components/DetailedInformation';
@@ -44,13 +43,11 @@ const App: React.FC = () => {
   };
 
   return (
-    <ErrorBoundary>
-      <ThemeContext.Provider value={{ mode, toggleTheme }}>
-        <Provider store={store}>
-          <RouterProvider router={router} />
-        </Provider>
-      </ThemeContext.Provider>
-    </ErrorBoundary>
+    <ThemeContext.Provider value={{ mode, toggleTheme }}>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </ThemeContext.Provider>
   );
 };
 

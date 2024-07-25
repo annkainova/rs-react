@@ -66,7 +66,6 @@ const CardSection: React.FC<CardSectionProps> = ({ animeList }) => {
             <div className={cl.checkboxBox}>
               {' '}
               <Input
-                // key={anime.id}
                 type="checkbox"
                 id="checkbox"
                 onChange={() => handleChangeCheckbox(anime)}

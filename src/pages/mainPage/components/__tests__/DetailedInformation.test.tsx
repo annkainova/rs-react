@@ -60,7 +60,7 @@ describe('DetailedInformation', () => {
       expect(screen.queryByRole('status')).not.toBeInTheDocument();
     });
 
-    const closeButton = screen.getByRole('button');
+    const closeButton = screen.getByRole('closeButton');
     fireEvent.click(closeButton);
 
     expect(screen.queryByText('Test Anime 1')).not.toBeInTheDocument();

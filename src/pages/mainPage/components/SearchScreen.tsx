@@ -71,7 +71,7 @@ const SearchScreen: React.FC = () => {
   const handleClickOnLogo = () => {
     deleteValueLocalStorge();
     dispatch(setSearchQuery(''));
-    dispatch(setCurrentPage(1));
+    // dispatch(setCurrentPage(1));
   };
 
   const totalItems = data?.meta.count || 0;
@@ -88,7 +88,7 @@ const SearchScreen: React.FC = () => {
         <h1 onClick={handleClickOnLogo} className={cl.logo}>
           anime.search
         </h1>
-        <Button onClick={toggleTheme} isOutline={true}>
+        <Button onClick={toggleTheme} isOutline={true} role="themeButton">
           {isDarkMode ? <Sun /> : <Moon />}
         </Button>
       </div>

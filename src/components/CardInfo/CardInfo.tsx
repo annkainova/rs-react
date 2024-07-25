@@ -45,7 +45,7 @@ const CardInfo: React.FC<CardInfoProps> = ({
       </div>
 
       <div className={cl.cardInfo__buttonClose}>
-        <Button onClick={handleClose}>
+        <Button onClick={handleClose} role="closeButton">
           <Cross />
         </Button>
       </div>
