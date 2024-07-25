@@ -62,7 +62,7 @@ const Pagination: React.FC<PaginationProps> = ({ totalItems }) => {
         </Button>
       )}
       {renderPageNumbers()}
-      {currentPage !== totalPages && (
+      {currentPage < totalPages && (
         <Button isMain={true} onClick={handleNextPage}>
           Next
         </Button>
