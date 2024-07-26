@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ import DetailedInformation from './pages/mainPage/components/DetailedInformation
 import ThemeContext from './ThemeContext';
 
 import { store } from './state/store';
+import NotFoundPage from './pages/notFoundPage/NotFoundPage';
 
 const router = createBrowserRouter([
   {
@@ -27,23 +28,19 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <ErrorPage />,
+    element: <NotFoundPage />,
   },
 ]);
 
 const App: React.FC = () => {
-  const choosenMode = localStorage.getItem('mode') || 'dark';
+  const [mode, setMode] = useState(localStorage.getItem('mode') || 'dark');
 
-  const [mode, setIsDarkMode] = useState(choosenMode);
+  useEffect(() => {
+    localStorage.setItem('mode', mode);
+  }, [mode]);
 
   const toggleTheme = () => {
-    if (mode === 'dark') {
-      setIsDarkMode('light');
-      localStorage.setItem('mode', 'light');
-    } else {
-      setIsDarkMode('dark');
-      localStorage.setItem('mode', 'dark');
-    }
+    setMode((prevMode) => (prevMode === 'dark' ? 'light' : 'dark'));
   };
 
   return (
