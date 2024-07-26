@@ -32,7 +32,7 @@ describe('Card', () => {
         title={mockAnimeList[0].attributes.canonicalTitle}
         yearStart={mockAnimeList[0].attributes.startDate}
         rating={mockAnimeList[0].attributes.averageRating}
-        imgLink={mockAnimeList[0].attributes.posterImage.large}
+        imgLink={mockAnimeList[0].attributes.posterImage?.large ?? ''}
       />
     );
 
