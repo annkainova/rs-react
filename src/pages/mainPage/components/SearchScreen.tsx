@@ -1,9 +1,10 @@
 import cn from 'classnames';
-import React, { Suspense, useContext, useEffect } from 'react';
+import React, { Suspense, useContext, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { RootState } from '../../../state/store';
 import {
+  clearSearchQuery,
   setAnimeListOnPage,
   setCurrentPage,
   setSearchQuery,
@@ -39,15 +40,6 @@ const SearchScreen: React.FC = () => {
     (state: RootState) => state.anime.searchQuery
   );
 
-  useEffect(() => {
-    if (queryLocal) {
-      dispatch(setSearchQuery(queryLocal));
-    }
-    if (pageNumber) {
-      dispatch(setCurrentPage(Number(pageNumber)));
-    }
-  }, [dispatch, pageNumber, queryLocal]);
-
   const limit = 12;
   const offset = currentPage * limit;
 
@@ -56,22 +48,36 @@ const SearchScreen: React.FC = () => {
     offset,
   });
 
-  useEffect(() => {
-    setValueLocalStorge(searchQuery);
+  useMemo(() => {
+    if (queryLocal) {
+      dispatch(setSearchQuery(queryLocal));
+    }
+    if (pageNumber) {
+      dispatch(setCurrentPage(Number(pageNumber)));
+    }
+  }, [dispatch, pageNumber, queryLocal]);
 
+  useEffect(() => {
     if (data) {
       dispatch(setAnimeListOnPage(data.data));
     }
-  }, [setValueLocalStorge, searchQuery, dispatch, data]);
+  }, [dispatch, data]);
+
+  useEffect(() => {
+    if (searchQuery) {
+      setValueLocalStorge(searchQuery);
+    }
+  }, [setValueLocalStorge, searchQuery]);
 
   useEffect(() => {
     navigate(`/search/${currentPage}`);
   }, [navigate, currentPage]);
 
   const handleClickOnLogo = () => {
+    dispatch(clearSearchQuery());
+    dispatch(setCurrentPage(1));
+    navigate(`/search/1`);
     deleteValueLocalStorge();
-    dispatch(setSearchQuery(''));
-    // dispatch(setCurrentPage(1));
   };
 
   const totalItems = data?.meta.count || 0;

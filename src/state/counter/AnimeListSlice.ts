@@ -34,6 +34,10 @@ const animeListSlice = createSlice({
       const newState = state;
       newState.searchQuery = action.payload;
     },
+    clearSearchQuery(state) {
+      const newState = state;
+      newState.searchQuery = '';
+    },
     setCurrentPage(state, action: PayloadAction<number>) {
       const newState = state;
       newState.currentPage = action.payload;
@@ -61,6 +65,7 @@ const animeListSlice = createSlice({
 
 export const {
   setSearchQuery,
+  clearSearchQuery,
   setCurrentPage,
   setAnimeListOnPage,
   setDetailCard,

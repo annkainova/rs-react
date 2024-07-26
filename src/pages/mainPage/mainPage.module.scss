@@ -5,22 +5,9 @@
   justify-content: center;
   height: 90vh;
 
-  &__topBox {
-    // z-index: 10;
-    // display: grid;
-    // grid-template-columns: repeat(3, 1fr);
-  }
+  &__topBox {}
 
-  &__title {
-    // position: absolute;
-    // left: 45%;
-    // top: 0;
-
-    // margin-top: 24px;
-    // font-size: 24px;
-    // color: var(--light-color);
-    // cursor: pointer;
-  }
+  &__title {}
 
   img {
     position: absolute;
@@ -110,7 +97,6 @@
 
 .logo {
   justify-self: center;
-  // margin-top: 24px;
   margin-left: 56px;
   font-size: 24px;
   color: var(--light-color);

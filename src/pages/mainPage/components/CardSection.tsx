@@ -21,10 +21,10 @@ export interface Anime {
     averageRating: string;
     posterImage: {
       large: string;
-    };
+    } | null;
     coverImage: {
       original: string;
-    };
+    } | null;
   };
 }
 
@@ -57,14 +57,13 @@ const CardSection: React.FC<CardSectionProps> = ({ animeList }) => {
           <div key={anime.id} className={cl.cardBox}>
             <Link to={`card/${anime.id}`}>
               <Card
-                title={anime.attributes.canonicalTitle}
-                yearStart={anime.attributes.startDate}
-                rating={anime.attributes.averageRating}
-                imgLink={anime.attributes.posterImage.large}
+                title={anime.attributes.canonicalTitle || 'No Title'}
+                yearStart={anime.attributes.startDate || 'Unknown'}
+                rating={anime.attributes.averageRating || 'N/A'}
+                imgLink={anime.attributes.posterImage?.large || 'N/A'}
               />
             </Link>
             <div className={cl.checkboxBox}>
-              {' '}
               <Input
                 type="checkbox"
                 id="checkbox"

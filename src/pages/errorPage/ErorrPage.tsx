@@ -8,7 +8,7 @@ const ErrorPage = () => {
   const navigate = useNavigate();
 
   const handleClickReturn = () => {
-    navigate('/');
+    navigate('/search/1');
   };
 
   return (

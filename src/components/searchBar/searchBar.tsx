@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   setCurrentPage,
   setSearchQuery,
@@ -14,6 +15,7 @@ import cl from './SearchBar.module.scss';
 import SearchIcon from '../icons/search';
 
 const SearchBar: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [query, setQuery] = useState('');
   const [queryLocal, setValueLocalStorge] = useLocalStorage('searchQuery');
@@ -32,6 +34,7 @@ const SearchBar: React.FC = () => {
     setValueLocalStorge(trimmedQuery);
     dispatch(setSearchQuery(trimmedQuery));
     dispatch(setCurrentPage(1));
+    navigate('/search/1');
   };
 
   return (

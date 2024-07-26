@@ -110,8 +110,6 @@ li {
   overflow: hidden;
 }
 
-// gradient
-
 .gradient {
   position: absolute;
   z-index: 5;
@@ -121,19 +119,15 @@ li {
 
 .gradient-bottom-light {
   border-radius: 24px;
-  background: linear-gradient(
-    0deg,
-    rgba(18, 18, 18, 0.6) 6.8%,
-    rgba(18, 18, 18, 0) 120.11%
-  );
+  background: linear-gradient(0deg,
+      rgba(18, 18, 18, 0.6) 6.8%,
+      rgba(18, 18, 18, 0) 120.11%);
 }
 
 .gradient-left {
-  background: linear-gradient(
-    90deg,
-    rgba(18, 18, 18, 0.6) 6.8%,
-    rgba(18, 18, 18, 0) 120.11%
-  );
+  background: linear-gradient(90deg,
+      rgba(18, 18, 18, 0.6) 6.8%,
+      rgba(18, 18, 18, 0) 120.11%);
 }
 
 .gradient-bottom {
@@ -161,17 +155,13 @@ li {
 .gradient__card-info {
   z-index: 10;
   border-radius: 24px;
-  background: linear-gradient(
-    90deg,
-    rgba(18, 18, 18, 0.9) 6.8%,
-    rgba(18, 18, 18, 0.2) 120.11%
-  );
+  background: linear-gradient(90deg,
+      rgba(18, 18, 18, 0.9) 6.8%,
+      rgba(18, 18, 18, 0.2) 120.11%);
 }
 
 .lightMode .gradient__card-info {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.9) 6.8%,
-    rgba(255, 255, 255, 0.2) 120.11%
-  );
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.9) 6.8%,
+      rgba(255, 255, 255, 0.2) 120.11%);
 }

@@ -20,13 +20,13 @@ const DownloadButton = () => {
 
   const rows = selectedItems.map((item) => [
     item.id,
-    item.attributes.canonicalTitle,
-    item.attributes.description,
-    item.attributes.totalLength,
-    item.attributes.startDate,
-    item.attributes.averageRating,
-    item.attributes.posterImage.large,
-    item.attributes.coverImage.original,
+    item.attributes.canonicalTitle ?? 'No Title',
+    item.attributes.description ?? 'Unknown',
+    item.attributes.totalLength ?? 'Unknown',
+    item.attributes.startDate ?? 'Unknown',
+    item.attributes.averageRating ?? 'N/A',
+    item.attributes.posterImage?.large ?? 'N/A',
+    item.attributes.coverImage?.original ?? 'N/A',
   ]);
 
   const csvContent = [

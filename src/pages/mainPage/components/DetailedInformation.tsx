@@ -40,7 +40,7 @@ const DetailedInformation: React.FC = () => {
         title={data!.data.attributes.canonicalTitle}
         yearStart={data!.data.attributes.startDate}
         rating={data!.data.attributes.averageRating}
-        imgLink={data!.data.attributes.posterImage.large}
+        imgLink={data!.data.attributes.posterImage?.large ?? ''}
         episods={data!.data.attributes.totalLength}
         description={data!.data.attributes.description}
       />

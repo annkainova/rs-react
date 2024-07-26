@@ -33,6 +33,4 @@ describe('ErrorPage', () => {
       screen.getByText('Sorry, an unexpected error has occurred.')
     ).toBeInTheDocument();
   });
-
-  // it('', async () => {});
 });

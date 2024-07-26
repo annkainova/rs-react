@@ -32,7 +32,7 @@
   transition: background-color 0.3s;
 }
 
-.inputWrapper input:checked+.customCheckbox {
+.inputWrapper input:checked + .customCheckbox {
   border: 1px solid var(--accent-color);
   background-color: var(--accent-color);
 }
@@ -50,7 +50,7 @@
   transform: rotate(45deg);
 }
 
-.inputWrapper input:checked+.customCheckbox::after {
+.inputWrapper input:checked + .customCheckbox::after {
   display: block;
 }
 
