@@ -7,7 +7,7 @@ import Loader from '../../../components/loader/Loader';
 import CardInfo from '../../../components/CardInfo/CardInfo';
 
 import cl from '../../../components/CardInfo/CardInfo.module.scss';
-import { setDetailCard } from '../../../state/counter/AnimeListSlice';
+import { setDetailCard } from '../../../state/slice/AnimeListSlice';
 
 const DetailedInformation: React.FC = () => {
   const dispatch = useDispatch();

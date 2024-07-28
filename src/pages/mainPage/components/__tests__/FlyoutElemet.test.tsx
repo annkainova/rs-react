@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { mockAnimeList, queryClientTest, storeTest } from './mockAnimeList';
 
 import FlyoutElement from '../../../../components/FlyoutElement/FlyoutElement';
-import { setSelectedElements } from '../../../../state/counter/AnimeListSlice';
+import { setSelectedElements } from '../../../../state/slice/AnimeListSlice';
 
 global.URL.createObjectURL = vi.fn();
 

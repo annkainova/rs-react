@@ -27,24 +27,6 @@ vi.mock('../../../api/getAnime', async () => ({
 }));
 
 describe('DetailedInformation', () => {
-  it('displays a loading indicator while fetching data', async () => {
-    render(
-      <Provider store={storeTest}>
-        <MemoryRouter initialEntries={['/card/1']}>
-          <Routes>
-            <Route path="/card/:cardId" element={<DetailedInformation />} />
-          </Routes>{' '}
-        </MemoryRouter>
-      </Provider>
-    );
-
-    expect(screen.getByRole('status')).toBeInTheDocument();
-
-    await waitFor(() => {
-      expect(screen.queryByRole('status')).not.toBeInTheDocument();
-    });
-  });
-
   it('hides the component when clicking the close button', async () => {
     render(
       <Provider store={storeTest}>

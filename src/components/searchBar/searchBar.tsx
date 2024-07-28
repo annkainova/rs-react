@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   setCurrentPage,
   setSearchQuery,
-} from '../../state/counter/AnimeListSlice';
+} from '../../state/slice/AnimeListSlice';
 
 import useLocalStorage from '../../hooks/useLocalStorage';
 

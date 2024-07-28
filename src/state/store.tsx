@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import AnimeListReduser from './counter/AnimeListSlice';
+import AnimeListReduser from './slice/AnimeListSlice';
 import { animeApi } from '../api/getAnime';
 
 export const store = configureStore({

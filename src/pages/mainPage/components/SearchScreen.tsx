@@ -7,7 +7,7 @@ import {
   clearSearchQuery,
   setCurrentPage,
   setSearchQuery,
-} from '../../../state/counter/AnimeListSlice';
+} from '../../../state/slice/AnimeListSlice';
 import { useGetAnimeQuery } from '../../../api/getAnime';
 
 import useLocalStorage from '../../../hooks/useLocalStorage';

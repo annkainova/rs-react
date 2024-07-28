@@ -8,7 +8,7 @@ import { RootState } from '../../../state/store';
 import {
   deleteSelectedElements,
   setSelectedElements,
-} from '../../../state/counter/AnimeListSlice';
+} from '../../../state/slice/AnimeListSlice';
 import FlyoutElement from '../../../components/FlyoutElement/FlyoutElement';
 
 export interface Anime {

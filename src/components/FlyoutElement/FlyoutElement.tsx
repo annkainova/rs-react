@@ -5,7 +5,7 @@ import Button from '../ui/button/Button';
 
 import cl from './FlyoutElement.module.scss';
 import { RootState } from '../../state/store';
-import { deleteAllSelectedElements } from '../../state/counter/AnimeListSlice';
+import { deleteAllSelectedElements } from '../../state/slice/AnimeListSlice';
 import ThemeContext from '../../ThemeContext';
 import DownloadButton from './components/DownloadButton';
 

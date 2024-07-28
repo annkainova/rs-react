@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { QueryClient } from 'react-query';
 
 import '@testing-library/jest-dom';
-import AnimeListSlice from '../../../../state/counter/AnimeListSlice';
+import AnimeListSlice from '../../../../state/slice/AnimeListSlice';
 import { Anime } from '../CardSection';
 import { animeApi } from '../../../../api/getAnime';
 
