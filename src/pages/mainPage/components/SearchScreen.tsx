@@ -5,7 +5,6 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { RootState } from '../../../state/store';
 import {
   clearSearchQuery,
-  setAnimeListOnPage,
   setCurrentPage,
   setSearchQuery,
 } from '../../../state/counter/AnimeListSlice';
@@ -56,12 +55,6 @@ const SearchScreen: React.FC = () => {
       dispatch(setCurrentPage(Number(pageNumber)));
     }
   }, [dispatch, pageNumber, queryLocal]);
-
-  useEffect(() => {
-    if (data) {
-      dispatch(setAnimeListOnPage(data.data));
-    }
-  }, [dispatch, data]);
 
   useEffect(() => {
     if (searchQuery) {

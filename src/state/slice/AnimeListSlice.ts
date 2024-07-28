@@ -2,14 +2,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Anime } from '../../pages/mainPage/components/CardSection';
 
 interface AnimeListSlice {
+  animeListOnPage: Anime[];
   detailCard: Anime | null;
   searchQuery: string;
   currentPage: number;
-
   selectedElements: Anime[];
 }
 
 const initialState: AnimeListSlice = {
+  animeListOnPage: [],
   detailCard: null,
   searchQuery: '',
   currentPage: 1,
@@ -20,6 +21,10 @@ const animeListSlice = createSlice({
   name: 'anime',
   initialState,
   reducers: {
+    setAnimeListOnPage(state, action: PayloadAction<Anime[]>) {
+      const newState = state;
+      newState.animeListOnPage = action.payload;
+    },
     setDetailCard(state, action: PayloadAction<Anime>) {
       const newState = state;
       newState.detailCard = action.payload;
@@ -37,8 +42,12 @@ const animeListSlice = createSlice({
       newState.currentPage = action.payload;
     },
     setSelectedElements(state, action: PayloadAction<Anime>) {
-      const newState = state;
-      newState.selectedElements?.push(action.payload);
+      if (
+        !state.selectedElements.some((anime) => anime.id === action.payload.id)
+      ) {
+        const newState = state;
+        newState.selectedElements?.push(action.payload);
+      }
     },
     deleteSelectedElements(state, action: PayloadAction<string>) {
       const newState = state;
