@@ -1,0 +1,56 @@
+.button {
+  border: none;
+  border-radius: 14px;
+  min-height: 50px;
+  box-sizing: border-box;
+  font-weight: 400;
+  font-size: var(--third-font-size);
+  line-height: 0px;
+  text-align: center;
+  color: #fff;
+  background: var(--accent-color);
+  transition: transform 0.3s ease-in-out;
+
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &:disabled {
+    background: var(--text-color);
+
+    &:hover {
+      transform: scale(1);
+    }
+  }
+}
+
+.buttonMain {
+  padding: 16px 50px;
+}
+
+.buttonSqr {
+  width: 50px;
+  height: 50px;
+}
+
+.btnGrey {
+  color: #fff;
+  background: #242323;
+}
+
+.lightMode.btnGrey {
+  border: 1px solid #fff;
+  color: #fff;
+  background: transparent;
+}
+
+.btnOutline {
+  border: 1px solid #fff;
+  background: transparent;
+}
+
+.btnActive {
+  background: var(--accent-color);
+}
